@@ -1,4 +1,4 @@
-package com.sapient.sapient;
+package com.sapient.sapient.callout;
 import java.time.LocalDate;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
