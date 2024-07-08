@@ -23,6 +23,12 @@ public class CalloutController {
 		model.addAttribute("callouts", calloutRepository.findAll());
 		return "all_callouts";
 	}
+
+	@GetMapping("/callout")
+	public String mainCallout(Model model) {
+		model.addAttribute("callouts", calloutRepository.findAll());
+		return "callout";
+	}
 	
 	@GetMapping("/addcallout")
 	public String addCallout(Model model) {
