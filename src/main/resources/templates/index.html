@@ -6,14 +6,61 @@
 			<meta http-equiv="X-UA-Compatible" content="ie=edge">
 			<!-- Bootstrap -->
 			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+			<link rel="stylesheet" href="/style.css">
 			<title>Homepage</title>
 		</head>
 		<body>
-			<div class="row d-flex align-content-center flex-column">
-				<div class="col-10">
-					<h1>Sapient Stuff</h1>
-								
+			<div class="row d-flex align-content-center">
+				<div class="col-3 mt-2 mb-1">
+					<a th:href="@{/addcallout}">
+						<div class="talent-box d-flex justify-content-center align-items-center">
+							<div class="col-10 tbox">
+								<p class="text-center mb-0">Talent Guard!</p>
+							</div>
+						</div>
+					</a>
+				</div>
+				
+				<div class="col-6">
+					<h1 class="mt-2 text-center">Prism</h1>
+				</div>
+				
+				<div class="col-3 mt-2 mb-1">
+					<a th:href="@{/addcallout}">
+						<div class="callout-box d-flex justify-content-center align-items-center">
+							<div class="col-10 cbox">
+								<p class="text-center mb-0">Callout!</p>
+							</div>
+						</div>
+					</a>
 				</div>
 			</div>
+			
+			<div class="row d-flex align-content-center">
+				<div class="col-3 my-1">
+					<a th:href="@{/addcallout}">
+						<div class="smallimp-box d-flex justify-content-center align-items-center">
+							<div class="col-10 sibox">
+								<p class="text-center mb-0">Small Improvements!</p>
+							</div>
+						</div>
+					</a>
+				</div>
+				
+				<div class="col-6">
+				</div>
+				
+				<div class="col-3 mt-2 mb-1">
+					<a th:href="@{/addcallout}">
+						<div class="fame-box d-flex justify-content-center align-items-center">
+							<div class="col-10 fbox">
+								<p class="text-center mb-0">Hall Of Fame!</p>
+							</div>
+						</div>
+					</a>
+				</div>
+				
+			</div>
+			
 		</body>
 	</html>

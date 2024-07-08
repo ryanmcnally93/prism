@@ -1,0 +1,55 @@
+.callout-box {
+	height: 200px;
+	background-color: turquoise;
+	border-radius: 15px;
+}
+
+.cbox {
+	color: darkturquoise;
+	background-color: white;
+	border: 1px solid darkturquoise;
+	border-radius: 10px;
+	padding: 5px 0;
+}
+
+.fame-box {
+	height: 200px;
+	background-color: yellow;
+	border-radius: 15px;
+}
+
+.fbox {
+	color: gold;
+	background-color: white;
+	border: 1px solid gold;
+	border-radius: 10px;
+	padding: 5px 0;
+}
+
+.talent-box {
+	height: 200px;
+	background-color: green;
+	border-radius: 15px;
+}
+
+.tbox {
+	color: green;
+	background-color: white;
+	border: 1px solid darkgreen;
+	border-radius: 10px;
+	padding: 5px 0;
+}
+
+.smallimp-box {
+	height: 200px;
+	background-color: orange;
+	border-radius: 15px;
+}
+
+.sibox {
+	color: orange;
+	background: white;
+	border: 1px solid darkorange;
+	border-radius: 20px;
+	padding: 5px 0;
+}
