@@ -10,6 +10,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import org.hibernate.collection.spi.PersistentBag;
+
 
 @Entity
 @Table(name="talentguards")
@@ -21,18 +23,32 @@ public class TalentGuards {
 	private int talentguardId;
 	@Column(name="employee_id")
 	private int employeeId;
-	@OneToMany(mappedBy = "talentguards", cascade = CascadeType.ALL, orphanRemoval = true)
-	private ArrayList<Certificates> certs;
-	@OneToMany(mappedBy = "talentguards", cascade = CascadeType.ALL, orphanRemoval = true)
-	private ArrayList<Experiences> exps;
+	@OneToMany(mappedBy = "talentguard", cascade = CascadeType.ALL, orphanRemoval = true)
+	private PersistentBag<Certificates> certs;
+	@OneToMany(mappedBy = "talentguard", cascade = CascadeType.ALL, orphanRemoval = true)
+	private PersistentBag<Experiences> exps;
 
 	public TalentGuards() {};
-	public TalentGuards(int employeeId, Certificates cert, Experiences exp) {
+	
+	public TalentGuards(int talentguardId, int employeeId) {
+		super();
+		this.talentguardId = talentguardId;
+		this.employeeId = employeeId;
+	}
+	
+	public TalentGuards(int talentguardId, int employeeId, PersistentBag<Certificates> certs, PersistentBag<Experiences> exps) {
+		super();
+		this.talentguardId = talentguardId;
+		this.employeeId = employeeId;
+		this.certs = certs;
+		this.exps = exps;
+	}
+	
+	public TalentGuards(int employeeId) {
 		super();
 		this.employeeId = employeeId;
-		this.certs.add(cert);
-		this.exps.add(exp);
 	}
+	
 	public int getTalentguardId() {
 		return talentguardId;
 	}
@@ -45,16 +61,29 @@ public class TalentGuards {
 	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
 	}
-	public ArrayList<Certificates> getCerts() {
-		return certs;
+	public PersistentBag<Certificates> getCerts() {
+		if (certs == null) {
+	        certs = new PersistentBag<Certificates>();
+	    }
+	    return certs;
 	}
-	public void setCerts(ArrayList<Certificates> certs) {
+	public void addToCerts(Certificates cert) {
+		this.certs.add(cert);
+	}
+	public void addToExps(Experiences exp) {
+		this.exps.add(exp);
+	}
+	public PersistentBag<Experiences> getExps() {
+		if (exps == null) {
+	        exps = new PersistentBag<Experiences>();
+	    }
+	    return exps;
+	}
+	public void setCerts(PersistentBag<Certificates> certs) {
 		this.certs = certs;
 	}
-	public ArrayList<Experiences> getExps() {
-		return exps;
-	}
-	public void setExps(ArrayList<Experiences> exps) {
+
+	public void setExps(PersistentBag<Experiences> exps) {
 		this.exps = exps;
 	}
 }

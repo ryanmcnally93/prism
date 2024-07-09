@@ -1,4 +1,6 @@
 package com.sapient.sapient.TalentGuard;
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,14 +22,76 @@ public class Experiences {
 	private int expId;
 	@ManyToOne
 	@JoinColumn(name="talentguard_id")
-	public TalentGuards talentguards;
+	public TalentGuards talentguard;
 	public String experience;
 	public int years;
 	public int months;
 	
-	public Experiences(String exp, int years, int months) {
-		this.experience = exp;
+	public Experiences() {};
+	
+	public Experiences(int expId, TalentGuards tgs) {
+		this.expId = expId;
+		this.talentguard = tgs;
+	}
+	
+	public Experiences(String experience, int years, int months) {
+		this.experience = experience;
 		this.years = years;
+		this.months = months;
+	}
+	
+	public Experiences(int expId, TalentGuards tgs, String experience, int years, int months) {
+		this.expId = expId;
+		this.talentguard = tgs;
+		this.experience = experience;
+		this.years = years;
+		this.months = months;
+	}
+	
+	public Experiences(TalentGuards tgs, String experience, int years, int months) {
+		this.talentguard = tgs;
+		this.experience = experience;
+		this.years = years;
+		this.months = months;
+	}
+
+	public int getExpId() {
+		return expId;
+	}
+
+	public void setExpId(int expId) {
+		this.expId = expId;
+	}
+
+	public TalentGuards getTalentguards() {
+		return talentguard;
+	}
+
+	public void setTalentguards(TalentGuards talentguards) {
+		this.talentguard = talentguards;
+	}
+
+	public String getExperience() {
+		return experience;
+	}
+
+	public void setExperience(String experience) {
+		this.experience = experience;
+	}
+
+	public int getYears() {
+		return years;
+	}
+
+	public void setYears(int years) {
+		this.years = years;
+	}
+
+	public int getMonths() {
+		return months;
+	}
+
+	public void setMonths(int months) {
 		this.months = months;
 	}
 }
