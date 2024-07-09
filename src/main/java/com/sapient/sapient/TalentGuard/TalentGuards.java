@@ -11,6 +11,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.transaction.Transactional;
+
 import org.hibernate.collection.spi.PersistentBag;
 
 
@@ -62,6 +64,9 @@ public class TalentGuards {
 	public TalentGuards(int employeeId, Experiences exp) {
 		super();
 		this.employeeId = employeeId;
+		if(this.exps == null) {
+			this.exps = new PersistentBag<Experiences>();
+		}
 		this.addToExps(exp);
 	}
 	
@@ -84,10 +89,12 @@ public class TalentGuards {
 	    return certs;
 	}
 	public void addToCerts(Certificates cert) {
-		this.certs.add(cert);
+		cert.setTalentguards(this);
+		certs.add(cert);
 	}
 	public void addToExps(Experiences exp) {
-		this.exps.add(exp);
+		exp.setTalentguards(this);
+		exps.add(exp);
 	}
 	public PersistentBag<Experiences> getExps() {
 		if (exps == null) {

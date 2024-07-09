@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-	<html lang="en">
+	<html lang="en" xmlns:th="http://www.thymeleaf.org">
 		<head>
 			<meta charset="UTF-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,23 +17,30 @@
 							<p class="text-center mb-0">Talent Guard!</p>
 						</div>
 						
-						<form class="w-100" action="#" th:action="@{/save_cert}" th:object="${cert}" method="post">
-							<p class="text-center">Date: <input type="date" th:field="*{certDate}" /></p>
-							<p><input class="w-100" type="text" th:field="*{name}" placeholder="Certificate"/></p>
-							<p><input class="col-8" type="submit" value="Add Cert" /><input class="col-4" type="reset" value="Reset" /></p>
+						<form class="w-75 d-flex flex-column" action="#" th:action="@{/save_cert}" th:object="${cert}" method="post">
+							<p class="text-center mb-0 mt-2 smalltext text-white">Add a Certificate</p>
+							<input class="mx-auto w-100" type="date" th:field="*{certDate}" />
+							<input class="mx-auto w-100 mt-1" type="text" th:field="*{name}" placeholder="Certificate"/>
+							<p class="mx-auto mb-1"><input class="col-7" type="submit" value="Add Cert" /><input class="col-5" type="reset" value="Reset" /></p>
 						</form>
 						
-						<form class="w-100" action="#" th:action="@{/save_exp}" th:object="${exp}" method="post">
-							<p><input class="w-100" type="text" th:field="*{experience}" placeholder="Language/Framework"/></p>
-							<div class="row">
+						<div th:if="${message}" class="alert alert-success" role="alert">
+					        <span th:text="${message}"></span>
+					    </div>
+						
+						<form class="w-75 mx-auto" action="#" th:action="@{/save_exp}" th:object="${exp}" method="post">
+							<p class="text-center mb-0 mt-2 smalltext text-white">Add Experience</p>
+							<p class="text-center mb-0 smalltext text-white">Language/Framework</p>
+							<input type="text" class="w-100" th:field="*{experience}" placeholder="Exp"/>
+							<div class="row text-center">
 								<div class="col-6">
-									<p>Years: <input class="w-50" type="number" th:field="*{years}" /></p>
+									<p class="smalltext text-white">Years: <input class="w-100 text-center" type="number" th:field="*{years}" /></p>
 								</div>
 								<div class="col-6">
-									<p>Months: <input class="w-50" type="number" th:field="*{months}" /></p>
+									<p class="smalltext text-white">Months: <input class="w-100 text-center" type="number" th:field="*{months}" /></p>
 								</div>
 							</div>
-							<p><input type="submit" value="Add Experience" /><input type="reset" value="Reset" /></p>
+							<p><input class="col-7" type="submit" value="Add Exp" /><input class="col-5" type="reset" value="Reset" /></p>
 						</form>
 						
 					</div>

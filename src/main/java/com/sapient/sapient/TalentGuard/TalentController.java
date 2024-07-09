@@ -7,14 +7,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sapient.sapient.Callouts.Callout;
+
+import jakarta.transaction.Transactional;
 
 @Controller
 public class TalentController {
 
 	@Autowired
 	TalentRepository talentrepository;
+	@Autowired
+	TalentService talentservice;
 
 	@GetMapping("/talentguards")
 	public String allTalents(Model model) {
@@ -23,17 +28,17 @@ public class TalentController {
 	}
 	
 	@PostMapping("/save_cert")
-	public String saveCert(@ModelAttribute("cert") Certificates cert) {
-		TalentGuards t = new TalentGuards(1, cert);
-		talentrepository.save(t);
-		return "redirect:/home";
-	}
+    public String saveCert(@ModelAttribute("cert") Certificates cert, RedirectAttributes redirectAttributes) {
+        talentservice.saveCert(cert);
+        redirectAttributes.addFlashAttribute("message", "Certificate added!");
+        return "redirect:/home";
+    }
 	
 	@PostMapping("/save_exp")
-	public boolean saveCert(@ModelAttribute("cert") Experiences exp) {
-		TalentGuards t = new TalentGuards(1, exp);
-		talentrepository.save(t);
-		return true;
+	public String saveCert(@ModelAttribute("exp") Experiences exp, RedirectAttributes redirectAttributes) {
+		talentservice.saveExp(exp);
+        redirectAttributes.addFlashAttribute("message", "Experience added!");
+        return "redirect:/home";
 	}
 	
 }

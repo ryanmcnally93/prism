@@ -94,4 +94,11 @@ public class Experiences {
 	public void setMonths(int months) {
 		this.months = months;
 	}
+
+	@Override
+	public String toString() {
+		return "Experiences [expId=" + expId + ", talentguard=" + talentguard + ", experience=" + experience
+				+ ", years=" + years + ", months=" + months + "]";
+	}
+	
 }

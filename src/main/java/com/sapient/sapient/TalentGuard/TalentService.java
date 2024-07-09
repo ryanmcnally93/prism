@@ -4,6 +4,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import jakarta.transaction.Transactional;
+
 @Component
 public class TalentService {
 	@Autowired
@@ -13,6 +15,18 @@ public class TalentService {
 		talentrepository.save(t);
 		return true;
 	}
+	
+    public void saveCert(Certificates cert) {
+        TalentGuards t = talentrepository.findById(1).orElseThrow(() -> new RuntimeException("TalentGuards not found"));
+        t.addToCerts(cert);
+        talentrepository.save(t);
+    }
+	
+    public void saveExp(Experiences exp) {
+        TalentGuards t = talentrepository.findById(1).orElseThrow(() -> new RuntimeException("TalentGuards not found"));
+        t.addToExps(exp);
+        talentrepository.save(t);
+    }
 	
 	public boolean deleteTalent(Integer i) {
 		talentrepository.deleteById(i);
