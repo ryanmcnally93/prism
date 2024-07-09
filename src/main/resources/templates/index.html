@@ -17,19 +17,19 @@
 							<p class="text-center mb-0">Talent Guard!</p>
 						</div>
 						
-						<form class="w-75 d-flex flex-column" action="#" th:action="@{/save_cert}" th:object="${cert}" method="post">
+						<form class="w-75 d-flex flex-column mb-1" action="#" th:action="@{/save_cert}" th:object="${cert}" method="post">
 							<p class="text-center mb-0 mt-2 smalltext text-white">Add a Certificate</p>
 							<input class="mx-auto w-100" type="date" th:field="*{certDate}" />
 							<input class="mx-auto w-100 mt-1" type="text" th:field="*{name}" placeholder="Certificate"/>
 							<p class="mx-auto mb-1"><input class="col-7" type="submit" value="Add Cert" /><input class="col-5" type="reset" value="Reset" /></p>
 						</form>
 						
-						<div th:if="${message}" class="alert alert-success" role="alert">
+						<div th:if="${message}" class="alert mb-0 alert-success" role="alert">
 					        <span th:text="${message}"></span>
 					    </div>
 						
 						<form class="w-75 mx-auto" action="#" th:action="@{/save_exp}" th:object="${exp}" method="post">
-							<p class="text-center mb-0 mt-2 smalltext text-white">Add Experience</p>
+							<p class="text-center mb-0 mt-1 smalltext text-white">Add Experience</p>
 							<p class="text-center mb-0 smalltext text-white">Language/Framework</p>
 							<input type="text" class="w-100" th:field="*{experience}" placeholder="Exp"/>
 							<div class="row text-center">
