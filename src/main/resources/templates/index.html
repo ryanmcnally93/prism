@@ -12,13 +12,31 @@
 		<body>
 			<div class="row d-flex align-content-center">
 				<div class="col-3 mt-2 mb-1">
-					<a th:href="@{/addcallout}">
-						<div class="talent-box d-flex justify-content-center align-items-center">
-							<div class="col-10 tbox">
-								<p class="text-center mb-0">Talent Guard!</p>
-							</div>
+					<div class="talent-box d-flex flex-column justify-content-center align-items-center align-content-center">
+						<div class="tbox px-2">
+							<p class="text-center mb-0">Talent Guard!</p>
 						</div>
-					</a>
+						
+						<form class="w-100" action="#" th:action="@{/save_cert}" th:object="${cert}" method="post">
+							<p class="text-center">Date: <input type="date" th:field="*{certDate}" /></p>
+							<p><input class="w-100" type="text" th:field="*{name}" placeholder="Certificate"/></p>
+							<p><input class="col-8" type="submit" value="Add Cert" /><input class="col-4" type="reset" value="Reset" /></p>
+						</form>
+						
+						<form class="w-100" action="#" th:action="@{/save_exp}" th:object="${exp}" method="post">
+							<p><input class="w-100" type="text" th:field="*{experience}" placeholder="Language/Framework"/></p>
+							<div class="row">
+								<div class="col-6">
+									<p>Years: <input class="w-50" type="number" th:field="*{years}" /></p>
+								</div>
+								<div class="col-6">
+									<p>Months: <input class="w-50" type="number" th:field="*{months}" /></p>
+								</div>
+							</div>
+							<p><input type="submit" value="Add Experience" /><input type="reset" value="Reset" /></p>
+						</form>
+						
+					</div>
 				</div>
 				
 				<div class="col-6">

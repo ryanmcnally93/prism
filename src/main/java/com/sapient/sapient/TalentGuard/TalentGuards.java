@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,9 +24,9 @@ public class TalentGuards {
 	private int talentguardId;
 	@Column(name="employee_id")
 	private int employeeId;
-	@OneToMany(mappedBy = "talentguard", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "talentguard", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private PersistentBag<Certificates> certs;
-	@OneToMany(mappedBy = "talentguard", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "talentguard", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private PersistentBag<Experiences> exps;
 
 	public TalentGuards() {};
@@ -47,6 +48,21 @@ public class TalentGuards {
 	public TalentGuards(int employeeId) {
 		super();
 		this.employeeId = employeeId;
+	}
+	
+	public TalentGuards(int employeeId, Certificates cert) {
+		super();
+		this.employeeId = employeeId;
+		if(this.certs == null) {
+			this.certs = new PersistentBag<Certificates>();
+		}
+		this.addToCerts(cert);
+	}
+	
+	public TalentGuards(int employeeId, Experiences exp) {
+		super();
+		this.employeeId = employeeId;
+		this.addToExps(exp);
 	}
 	
 	public int getTalentguardId() {

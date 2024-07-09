@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.sapient.sapient.TalentGuard.Certificates;
+import com.sapient.sapient.TalentGuard.Experiences;
+
 @Controller
 public class CalloutController {
 	
@@ -14,6 +17,10 @@ public class CalloutController {
 	
 	@GetMapping("/home")
 	public String home(Model model) {
+		Certificates cert = new Certificates();
+		model.addAttribute("cert", cert);
+		Experiences exp = new Experiences();
+		model.addAttribute("exp", exp);
 		return "index";
 	}
 	

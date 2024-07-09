@@ -27,9 +27,18 @@
 }
 
 .talent-box {
-	height: 200px;
+	height: 450px;
 	background-color: green;
 	border-radius: 15px;
+	padding: 5px;
+}
+
+input {
+	font-size: 12px;
+}
+
+input[type="submit"], input[type="reset"] {
+	cursor: pointer;
 }
 
 .tbox {
