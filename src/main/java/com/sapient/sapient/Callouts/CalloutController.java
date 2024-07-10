@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.sapient.sapient.HallOfFame.FameRepository;
+import com.sapient.sapient.HallOfFame.Fames;
 import com.sapient.sapient.TalentGuard.Certificates;
 import com.sapient.sapient.TalentGuard.Experiences;
 
@@ -14,6 +16,8 @@ public class CalloutController {
 	
 	@Autowired
 	CalloutRepository calloutRepository;
+	@Autowired
+	FameRepository famesrepository;
 	
 	@GetMapping("/home")
 	public String home(Model model) {
@@ -21,13 +25,11 @@ public class CalloutController {
 		model.addAttribute("cert", cert);
 		Experiences exp = new Experiences();
 		model.addAttribute("exp", exp);
-		return "index";
-	}
-	
-	@GetMapping("/callouts")
-	public String allCallouts(Model model) {
+		Fames fame = new Fames();
+		model.addAttribute("fame", fame);
+		model.addAttribute("fames", famesrepository.findAll());
 		model.addAttribute("callouts", calloutRepository.findAll());
-		return "all_callouts";
+		return "index";
 	}
 	
 	@GetMapping("/addcallout")
@@ -38,9 +40,9 @@ public class CalloutController {
 	}
 	
 	@PostMapping("/save")
-	public String saveCallout(@ModelAttribute("person") Callout callout) {
+	public String saveCallout(@ModelAttribute("callout") Callout callout) {
 		calloutRepository.save(callout);
-		return "redirect:/callouts";
+		return "redirect:/home";
 	}
 	
 }

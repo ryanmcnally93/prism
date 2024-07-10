@@ -13,9 +13,13 @@
 }
 
 .fame-box {
-	height: 200px;
+	height: 250px;
 	background-color: yellow;
 	border-radius: 15px;
+}
+
+#listinput {
+	cursor: pointer;
 }
 
 .fbox {
@@ -74,4 +78,33 @@ input[type=number] {
 	border: 1px solid darkorange;
 	border-radius: 20px;
 	padding: 5px 0;
+}
+.post {
+	border: 1px solid black;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.post-type {
+	background-color: yellow;
+}
+
+.post-desc {
+	background-color: gold;
+}
+.post-date {
+	background-color: yellow;
+}
+.cpost {
+	border: 1px solid black;
+	border-radius: 10px;
+	overflow: hidden;
+}
+.cpost-employee {
+	background-color: green;
+	color: white;
+}
+.cpost-comments {
+	background-color: darkgreen;
+	color: white;
 }

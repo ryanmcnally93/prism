@@ -12,8 +12,6 @@
 			<div class="row d-flex align-content-center flex-column">
 				<div class="col-10">
 					<h1>Use this to add a callout</h1>
-								
-					<a th:href="@{/callouts}">View Callout</a>
 					
 					<form action="#" th:action="@{/save}" th:object="${callout}" method="post">
 						<p>Employee: <input type="number" th:field="*{employeeId}" /></p>

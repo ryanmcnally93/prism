@@ -30,14 +30,14 @@ public class TalentController {
 	@PostMapping("/save_cert")
     public String saveCert(@ModelAttribute("cert") Certificates cert, RedirectAttributes redirectAttributes) {
         talentservice.saveCert(cert);
-        redirectAttributes.addFlashAttribute("message", "Certificate added!");
+        redirectAttributes.addFlashAttribute("talentMessage", "Certificate added!");
         return "redirect:/home";
     }
 	
 	@PostMapping("/save_exp")
 	public String saveCert(@ModelAttribute("exp") Experiences exp, RedirectAttributes redirectAttributes) {
 		talentservice.saveExp(exp);
-        redirectAttributes.addFlashAttribute("message", "Experience added!");
+        redirectAttributes.addFlashAttribute("talentMessage", "Experience added!");
         return "redirect:/home";
 	}
 	
