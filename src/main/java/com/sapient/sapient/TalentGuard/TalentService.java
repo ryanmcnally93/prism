@@ -29,9 +29,15 @@ public class TalentService {
     }
 	
     public void saveExp(Experiences exp) {
-        TalentGuards t = talentrepository.findById(1).orElseThrow(() -> new RuntimeException("TalentGuards not found"));
-        t.addToExps(exp);
-        talentrepository.save(t);
+    	if(talentrepository.findById(1).isPresent()) {
+	        TalentGuards t = talentrepository.findById(1).orElseThrow(() -> new RuntimeException("TalentGuards not found"));
+	        t.addToExps(exp);
+	        talentrepository.save(t);
+    	} else {
+    		TalentGuards t = new TalentGuards(1);
+        	t.addToExps(exp);
+        	talentrepository.save(t);
+    	}
     }
 	
 	public boolean deleteTalent(Integer i) {

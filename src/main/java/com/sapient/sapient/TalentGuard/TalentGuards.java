@@ -2,7 +2,6 @@ package com.sapient.sapient.TalentGuard;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -93,7 +92,6 @@ public class TalentGuards {
 
 	public void addToCerts(Certificates cert) {
 		cert.setTalentguards(this);
-		System.out.println(certs);
 		if(certs == null) {
 			certs = new ArrayList<Certificates>();
 			certs.add(cert);
@@ -103,7 +101,12 @@ public class TalentGuards {
 	}
 	public void addToExps(Experiences exp) {
 		exp.setTalentguards(this);
-		exps.add(exp);
+		if(exps == null) {
+			exps = new ArrayList<Experiences>();
+			exps.add(exp);
+		} else {
+			exps.add(exp);
+		}
 	}
 	public List<Experiences> getExps() {
 		if (exps == null) {
