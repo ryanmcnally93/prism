@@ -10,7 +10,7 @@
 			<title>Homepage</title>
 		</head>
 		<body>
-			<div class="row d-flex align-content-center">
+			<div class="row mx-0 d-flex align-content-center">
 				<div class="col-3 d-flex align-content-center flex-column">
 					<div class="w-100 mt-2 mb-1">
 						<div class="talent-box d-flex flex-column justify-content-center align-items-center align-content-center">
@@ -62,33 +62,32 @@
 				<!-- FEED -->
 				<div class="col-6">
 					<h1 class="mt-2 text-center">Prism</h1>
-	
-					<!-- This feed is currently looking for 'Fames' -->
-					<!-- We will have to update for 'Posts' -->
-				    <div th:each="fame:${fames}" class="post col-12 px-0 m-2 text-center">
-				      <div class="post-type p-1">
-				        <p th:text="${fame.fameType}" class="mb-1"></p>
-				      </div>
-				      <div class="post-desc p-1">
-				        <p th:text="${fame.description}" class="mb-1"></p>
-				      </div>
-				      <div class="post-date p-1">
-				        <p th:text="${fame.fameDate}" class="mb-1"></p>
-				      </div>
-				    </div>
-					
-					
-					<!-- This feed is currently looking for 'Callouts' -->
-					<!-- We will have to update for 'Posts' -->
-					<div th:each="callout:${callouts}" class="cpost col-12 px-0 m-2 text-center">
-				      <div class="cpost-employee p-1">
-				        <p th:text="${callout.employeeId}" class="mb-1"></p>
-				      </div>
-				      <div class="cpost-comments p-1">
-				        <p th:text="${callout.comments}" class="mb-1"></p>
-				      </div>
-				    </div>
-					
+					<div class="mainfeed">
+						<!-- This feed is currently looking for 'Fames' -->
+						<!-- We will have to update for 'Posts' -->
+					    <div th:each="fame:${fames}" class="post col-12 px-0 m-2 text-center">
+					      <div class="post-type p-1">
+					        <p th:text="${fame.fameType}" class="mb-1"></p>
+					      </div>
+					      <div class="post-desc p-1">
+					        <p th:text="${fame.description}" class="mb-1"></p>
+					      </div>
+					      <div class="post-date p-1">
+					        <p th:text="${fame.fameDate}" class="mb-1"></p>
+					      </div>
+					    </div>
+						
+						<!-- This feed is currently looking for 'Callouts' -->
+						<!-- We will have to update for 'Posts' -->
+						<div th:each="callout:${callouts}" class="cpost col-12 px-0 m-2 text-center">
+					      <div class="cpost-employee p-1">
+					        <p th:text="${callout.employeeId}" class="mb-1"></p>
+					      </div>
+					      <div class="cpost-comments p-1">
+					        <p th:text="${callout.comments}" class="mb-1"></p>
+					      </div>
+					    </div>
+					</div>
 				</div>
 				
 				<div class="col-3 d-flex align-content-center flex-column">
@@ -127,7 +126,6 @@
 								    	<option value="Personal Achievement">
 								    </datalist>
 								
-								<input class="mx-auto w-100 mt-1" type="date" th:field="*{fameDate}" />
 								<input class="mx-auto w-100 mt-1" type="text" th:field="*{description}" placeholder="Description"/>
 								<p class="mx-auto mb-1"><input class="col-7" type="submit" value="Add Fame" /><input class="col-5" type="reset" value="Reset" /></p>
 							</form>
