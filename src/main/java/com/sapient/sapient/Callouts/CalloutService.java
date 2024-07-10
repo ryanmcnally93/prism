@@ -1,5 +1,6 @@
 package com.sapient.sapient.Callouts;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,9 @@ public class CalloutService {
 	private CalloutRepository calloutRepository;
 	
 	public boolean addCallout(Callout c) {
+		if(c.getCalloutDate() == null) {
+			c.setCalloutDate(LocalDateTime.now());
+		}
 		calloutRepository.save(c);
 		return true;
 	}
@@ -25,7 +29,7 @@ public class CalloutService {
 		return calloutRepository.findAll();
 	}
 	
-	public boolean updateCallout(Callout c, int id, int employeeId, LocalDate date, String type, int points, String comments) {
+	public boolean updateCallout(Callout c, int id, int employeeId, LocalDateTime date, String type, int points, String comments) {
 		c.setEmployeeId(employeeId);
 		c.setCalloutDate(date);
 		c.setCalloutType(type);

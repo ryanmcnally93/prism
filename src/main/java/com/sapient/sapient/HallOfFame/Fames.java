@@ -1,18 +1,13 @@
 package com.sapient.sapient.HallOfFame;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import jakarta.persistence.CascadeType;
+import java.time.LocalDateTime;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OrderColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
-import jakarta.transaction.Transactional;
 
 
 @Entity
@@ -45,7 +40,7 @@ public class Fames {
 //	this.employee = employee;
 //	this.fameId = fameId;
 //	this.employeeId = employeeId;
-//	this.fameType = fameType;
+//	this.fameType =  LocalDateTime.now();
 //	this.fameDate = fameDate;
 //	this.description = description;
 //}
@@ -53,7 +48,7 @@ public class Fames {
 	@Column(name="fame_type")
 	private String fameType;
 	@Column(name="fame_date")
-	private LocalDate fameDate;
+	private LocalDateTime fameDate;
 	@Column(name="description")
 	private String description;
 
@@ -65,12 +60,12 @@ public class Fames {
 		this.employeeId = employeeId;
 	}
 	
-	public Fames(int fameId, int employeeId, String fameType, LocalDate fameDate, String description) {
+	public Fames(int fameId, int employeeId, String fameType, LocalDateTime fameDate, String description) {
 		super();
 		this.fameId = fameId;
 		this.employeeId = employeeId;
 		this.fameType = fameType;
-		this.fameDate = fameDate;
+		this.fameDate =  LocalDateTime.now();
 		this.description = description;
 	}
 	
@@ -103,11 +98,11 @@ public class Fames {
 		this.fameType = fameType;
 	}
 
-	public LocalDate getFameDate() {
+	public LocalDateTime getFameDate() {
 		return fameDate;
 	}
 
-	public void setFameDate(LocalDate fameDate) {
+	public void setFameDate(LocalDateTime fameDate) {
 		this.fameDate = fameDate;
 	}
 

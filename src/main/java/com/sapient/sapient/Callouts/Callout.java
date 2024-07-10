@@ -1,5 +1,5 @@
 package com.sapient.sapient.Callouts;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,7 +42,7 @@ public class Callout {
 //	}
 	
 	@Column(name="callout_date")
-	private LocalDate calloutDate;
+	private LocalDateTime calloutDate;
 	@Column(name="callout_type")
 	private String calloutType;
 	@Column(name="points")
@@ -51,10 +51,10 @@ public class Callout {
 	private String comments;
 
 	public Callout() {};
-	public Callout(int employeeId, LocalDate calloutDate, String calloutType, int points, String comments) {
+	public Callout(int employeeId, LocalDateTime calloutDate, String calloutType, int points, String comments) {
 		super();
 		this.employeeId = employeeId;
-		this.calloutDate = calloutDate;
+		this.calloutDate = LocalDateTime.now();
 		this.calloutType = calloutType;
 		this.points = points;
 		this.comments = comments;
@@ -70,10 +70,10 @@ public class Callout {
 	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
 	}
-	public LocalDate getCalloutDate() {
+	public LocalDateTime getCalloutDate() {
 		return calloutDate;
 	}
-	public void setCalloutDate(LocalDate calloutDate) {
+	public void setCalloutDate(LocalDateTime calloutDate) {
 		this.calloutDate = calloutDate;
 	}
 	public String getCalloutType() {

@@ -1,4 +1,5 @@
 package com.sapient.sapient.HallOfFame;
+import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -9,6 +10,9 @@ public class FameService {
 	private FameRepository famerepository;
 	
 	public boolean addFame(Fames f) {
+		if(f.getFameDate() == null) {
+			f.setFameDate(LocalDateTime.now());
+		}
 		famerepository.save(f);
 		return true;
 	}

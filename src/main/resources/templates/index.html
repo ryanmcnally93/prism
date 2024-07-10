@@ -72,8 +72,8 @@
 					      <div class="post-desc p-1">
 					        <p th:text="${fame.description}" class="mb-1"></p>
 					      </div>
-					      <div class="post-date p-1">
-					        <p th:text="${fame.fameDate}" class="mb-1"></p>
+					      <div class="post-desc p-1">
+					        <p th:text="${#temporals.format(fame.fameDate, 'HH:mm:ss')}" class="mb-1 text-right mr-2"></p>
 					      </div>
 					    </div>
 						
@@ -86,6 +86,9 @@
 					      <div class="cpost-comments p-1">
 					        <p th:text="${callout.comments}" class="mb-1"></p>
 					      </div>
+						  <div class="cpost-comments p-1">
+  					        <p th:text="${#temporals.format(callout.calloutDate, 'HH:mm:ss')}" class="mb-1 text-right mr-2"></p>
+  					      </div>
 					    </div>
 					</div>
 				</div>

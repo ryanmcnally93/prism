@@ -1,4 +1,8 @@
 package com.sapient.sapient.Callouts;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +38,10 @@ public class CalloutController {
 		Callout newC = new Callout();
 		model.addAttribute("callout", newC);
 		model.addAttribute("fames", famesrepository.findAll());
-		model.addAttribute("callouts", calloutRepository.findAll());
+		List<Callout> sortedCallouts = calloutRepository.findAll();
+		Collections.sort(sortedCallouts, Comparator.comparing(Callout::getCalloutDate).reversed());
+		model.addAttribute("callouts", sortedCallouts);
+		
 		return "index";
 	}
 	

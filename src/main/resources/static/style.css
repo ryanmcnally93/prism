@@ -33,7 +33,7 @@
 }
 
 .fbox {
-	color: gold;
+	color: black;
 	background-color: white;
 	border: 1px solid gold;
 	border-radius: 10px;
@@ -45,6 +45,10 @@
 	background-color: #00c6c2;
 	border-radius: 15px;
 	padding: 5px;
+}
+
+.text-right{
+	font-style: italic;
 }
 
 input, .alert-success, .smalltext {
