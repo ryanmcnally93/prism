@@ -17,9 +17,15 @@ public class TalentService {
 	}
 	
     public void saveCert(Certificates cert) {
-        TalentGuards t = talentrepository.findById(1).orElseThrow(() -> new RuntimeException("TalentGuards not found"));
-        t.addToCerts(cert);
-        talentrepository.save(t);
+        if(talentrepository.findById(1).isPresent()) {
+        	TalentGuards t = talentrepository.findById(1).orElseThrow(() -> new RuntimeException("TalentGuards not found"));
+        	t.addToCerts(cert);
+        	talentrepository.save(t);
+        } else {
+        	TalentGuards t = new TalentGuards(1);
+        	t.addToCerts(cert);
+        	talentrepository.save(t);
+        }
     }
 	
     public void saveExp(Experiences exp) {

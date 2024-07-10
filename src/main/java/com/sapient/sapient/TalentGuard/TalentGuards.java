@@ -1,6 +1,7 @@
 package com.sapient.sapient.TalentGuard;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -10,10 +11,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderColumn;
 import jakarta.persistence.Table;
 import jakarta.transaction.Transactional;
-
-import org.hibernate.collection.spi.PersistentBag;
 
 
 @Entity
@@ -26,10 +26,12 @@ public class TalentGuards {
 	private int talentguardId;
 	@Column(name="employee_id")
 	private int employeeId;
-	@OneToMany(mappedBy = "talentguard", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-	private PersistentBag<Certificates> certs;
-	@OneToMany(mappedBy = "talentguard", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-	private PersistentBag<Experiences> exps;
+	@OneToMany(mappedBy = "talentguard", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	@OrderColumn
+	private List<Certificates> certs;
+	@OneToMany(mappedBy = "talentguard", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	@OrderColumn
+	private List<Experiences> exps;
 
 	public TalentGuards() {};
 	
@@ -39,7 +41,7 @@ public class TalentGuards {
 		this.employeeId = employeeId;
 	}
 	
-	public TalentGuards(int talentguardId, int employeeId, PersistentBag<Certificates> certs, PersistentBag<Experiences> exps) {
+	public TalentGuards(int talentguardId, int employeeId, ArrayList<Certificates> certs, ArrayList<Experiences> exps) {
 		super();
 		this.talentguardId = talentguardId;
 		this.employeeId = employeeId;
@@ -56,7 +58,7 @@ public class TalentGuards {
 		super();
 		this.employeeId = employeeId;
 		if(this.certs == null) {
-			this.certs = new PersistentBag<Certificates>();
+			this.certs = new ArrayList<Certificates>();
 		}
 		this.addToCerts(cert);
 	}
@@ -65,7 +67,7 @@ public class TalentGuards {
 		super();
 		this.employeeId = employeeId;
 		if(this.exps == null) {
-			this.exps = new PersistentBag<Experiences>();
+			this.exps = new ArrayList<Experiences>();
 		}
 		this.addToExps(exp);
 	}
@@ -82,31 +84,38 @@ public class TalentGuards {
 	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
 	}
-	public PersistentBag<Certificates> getCerts() {
+	public List<Certificates> getCerts() {
 		if (certs == null) {
-	        certs = new PersistentBag<Certificates>();
+	        certs = new ArrayList<Certificates>();
 	    }
 	    return certs;
 	}
+
 	public void addToCerts(Certificates cert) {
 		cert.setTalentguards(this);
-		certs.add(cert);
+		System.out.println(certs);
+		if(certs == null) {
+			certs = new ArrayList<Certificates>();
+			certs.add(cert);
+		} else {
+			certs.add(cert);
+		}
 	}
 	public void addToExps(Experiences exp) {
 		exp.setTalentguards(this);
 		exps.add(exp);
 	}
-	public PersistentBag<Experiences> getExps() {
+	public List<Experiences> getExps() {
 		if (exps == null) {
-	        exps = new PersistentBag<Experiences>();
+	        exps = new ArrayList<Experiences>();
 	    }
 	    return exps;
 	}
-	public void setCerts(PersistentBag<Certificates> certs) {
+	public void setCerts(ArrayList<Certificates> certs) {
 		this.certs = certs;
 	}
 
-	public void setExps(PersistentBag<Experiences> exps) {
+	public void setExps(ArrayList<Experiences> exps) {
 		this.exps = exps;
 	}
 }

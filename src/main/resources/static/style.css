@@ -28,7 +28,7 @@
 
 .talent-box {
 	height: 400px;
-	background-color: green;
+	background-color: #00c6c2;
 	border-radius: 15px;
 	padding: 5px;
 }
@@ -55,9 +55,9 @@ input[type=number] {
 }
 
 .tbox {
-	color: green;
+	color: #00A8A5;
 	background-color: white;
-	border: 1px solid darkgreen;
+	border: 1px solid #00A8A5;
 	border-radius: 10px;
 	padding: 5px 0;
 }

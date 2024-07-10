@@ -20,7 +20,7 @@ public class Certificates {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="cert_id")
 	private int certId;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="talentguard_id")
 	public TalentGuards talentguard;
 	@Column(name="date")
