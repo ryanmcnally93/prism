@@ -15,8 +15,32 @@ public class Callout {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="callout_id")
 	private int calloutId;
+	
+	// Remove this when connecting to Employee Table
+	// Remove mentions of this in constructors
 	@Column(name="employee_id")
 	private int employeeId;
+	
+//	@ManyToOne
+//	@JoinColumn(name="employee_id")
+//	private Employee employee;
+//	
+//	public Employee getEmployee() {
+//		return employee;
+//	}
+//
+//	public void setEmployee(Employee employee) {
+//		this.employee = employee;
+//	}
+//	public Callout(Employee employee, LocalDate calloutDate, String calloutType, int points, String comments) {
+//		super();
+//		this.employee = employee;
+//		this.calloutDate = calloutDate;
+//		this.calloutType = calloutType;
+//		this.points = points;
+//		this.comments = comments;
+//	}
+	
 	@Column(name="callout_date")
 	private LocalDate calloutDate;
 	@Column(name="callout_type")

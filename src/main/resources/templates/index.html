@@ -12,122 +12,132 @@
 		<body>
 			<div class="row d-flex align-content-center">
 				<div class="col-3 d-flex align-content-center flex-column">
-				<div class="w-100 mt-2 mb-1">
-					<div class="talent-box d-flex flex-column justify-content-center align-items-center align-content-center">
-						<div class="tbox px-2">
-							<p class="text-center mb-0">Talent Guard!</p>
-						</div>
+					<div class="w-100 mt-2 mb-1">
+						<div class="talent-box d-flex flex-column justify-content-center align-items-center align-content-center">
+							<div class="tbox px-2">
+								<p class="text-center mb-0">Talent Guard!</p>
+							</div>
+							
+							<form class="w-75 d-flex flex-column mb-1" action="#" th:action="@{/save_cert}" th:object="${cert}" method="post">
+								<p class="text-center mb-0 mt-2 smalltext text-white">Add a Certificate</p>
+								<input class="mx-auto w-100" type="date" th:field="*{certDate}" />
+								<input class="mx-auto w-100 mt-1" type="text" th:field="*{name}" placeholder="Certificate"/>
+								<p class="mx-auto mb-1"><input class="col-7" type="submit" value="Add Cert" /><input class="col-5" type="reset" value="Reset" /></p>
+							</form>
 						
-						<form class="w-75 d-flex flex-column mb-1" action="#" th:action="@{/save_cert}" th:object="${cert}" method="post">
-							<p class="text-center mb-0 mt-2 smalltext text-white">Add a Certificate</p>
-							<input class="mx-auto w-100" type="date" th:field="*{certDate}" />
-							<input class="mx-auto w-100 mt-1" type="text" th:field="*{name}" placeholder="Certificate"/>
-							<p class="mx-auto mb-1"><input class="col-7" type="submit" value="Add Cert" /><input class="col-5" type="reset" value="Reset" /></p>
-						</form>
-						
-						<div th:if="${talentMessage}" class="alert mb-0 alert-success" role="alert">
-					        <span th:text="${talentMessage}"></span>
-					    </div>
-						
-						<form class="w-75 mx-auto" action="#" th:action="@{/save_exp}" th:object="${exp}" method="post">
-							<p class="text-center mb-0 mt-1 smalltext text-white">Add Experience</p>
-							<p class="text-center mb-0 smalltext text-white">Language/Framework</p>
-							<input type="text" class="w-100" th:field="*{experience}" placeholder="Exp"/>
-							<div class="row text-center">
-								<div class="col-6">
-									<p class="smalltext text-white">Years: <input class="w-100 text-center" type="number" th:field="*{years}" /></p>
+							<div th:if="${talentMessage}" class="alert mb-0 alert-success" role="alert">
+						        <span th:text="${talentMessage}"></span>
+						    </div>
+							
+							<form class="w-75 d-flex flex-column" action="#" th:action="@{/save_exp}" th:object="${exp}" method="post">
+								<p class="text-center mb-0 mt-1 smalltext text-white">Add Experience</p>
+								<p class="text-center mb-0 smalltext text-white">Language/Framework</p>
+								<input type="text" class="w-100" th:field="*{experience}" placeholder="Exp"/>
+								<div class="row text-center">
+									<div class="col-6">
+										<p class="smalltext text-white">Years: <input class="w-100 text-center" type="number" th:field="*{years}" /></p>
+									</div>
+									<div class="col-6">
+										<p class="smalltext text-white">Months: <input class="w-100 text-center" type="number" th:field="*{months}" /></p>
+									</div>
 								</div>
-								<div class="col-6">
-									<p class="smalltext text-white">Months: <input class="w-100 text-center" type="number" th:field="*{months}" /></p>
+								<p class="mx-auto mb-1"><input class="col-7" type="submit" value="Add Exp" /><input class="col-5" type="reset" value="Reset" /></p>
+								
+							</form>
+							
+						</div>
+					</div>
+				
+					<div class="w-100 my-1">
+						<a th:href="@{/addcallout}">
+							<div class="smallimp-box d-flex justify-content-center align-items-center">
+								<div class="col-10 sibox">
+									<p class="text-center mb-0">Small Improvements!</p>
 								</div>
 							</div>
-							<p><input class="col-7" type="submit" value="Add Exp" /><input class="col-5" type="reset" value="Reset" /></p>
-						</form>
-						
+						</a>
 					</div>
 				</div>
 				
-				<div class="w-100 my-1">
-					<a th:href="@{/addcallout}">
-						<div class="smallimp-box d-flex justify-content-center align-items-center">
-							<div class="col-10 sibox">
-								<p class="text-center mb-0">Small Improvements!</p>
-							</div>
-						</div>
-					</a>
-				</div>
-			</div>
-				
-			<!-- FEED -->
-			<div class="col-6">
-				<h1 class="mt-2 text-center">Prism</h1>
-
-				<!-- This feed is currently looking for 'Fames' -->
-				<!-- We will have to update for 'Posts' -->
-			    <div th:each="fame:${fames}" class="post col-12 px-0 m-2 text-center">
-			      <div class="post-type p-1">
-			        <p th:text="${fame.fameType}" class="mb-1"></p>
-			      </div>
-			      <div class="post-desc p-1">
-			        <p th:text="${fame.description}" class="mb-1"></p>
-			      </div>
-			      <div class="post-date p-1">
-			        <p th:text="${fame.fameDate}" class="mb-1"></p>
-			      </div>
-			    </div>
-				
-				
-				<!-- This feed is currently looking for 'Callouts' -->
-				<!-- We will have to update for 'Posts' -->
-				<div th:each="callout:${callouts}" class="cpost col-12 px-0 m-2 text-center">
-			      <div class="cpost-employee p-1">
-			        <p th:text="${callout.employeeId}" class="mb-1"></p>
-			      </div>
-			      <div class="cpost-comments p-1">
-			        <p th:text="${callout.comments}" class="mb-1"></p>
-			      </div>
-			    </div>
-				
-			</div>
-				
-			<div class="col-3 d-flex align-content-center flex-column">
-				<div class="w-100 mt-2 mb-1">
-					<a th:href="@{/addcallout}">
-						<div class="callout-box d-flex justify-content-center align-items-center">
-							<div class="col-10 cbox">
-								<p class="text-center mb-0">Callout!</p>
-							</div>
-						</div>
-					</a>
+				<!-- FEED -->
+				<div class="col-6">
+					<h1 class="mt-2 text-center">Prism</h1>
+	
+					<!-- This feed is currently looking for 'Fames' -->
+					<!-- We will have to update for 'Posts' -->
+				    <div th:each="fame:${fames}" class="post col-12 px-0 m-2 text-center">
+				      <div class="post-type p-1">
+				        <p th:text="${fame.fameType}" class="mb-1"></p>
+				      </div>
+				      <div class="post-desc p-1">
+				        <p th:text="${fame.description}" class="mb-1"></p>
+				      </div>
+				      <div class="post-date p-1">
+				        <p th:text="${fame.fameDate}" class="mb-1"></p>
+				      </div>
+				    </div>
+					
+					
+					<!-- This feed is currently looking for 'Callouts' -->
+					<!-- We will have to update for 'Posts' -->
+					<div th:each="callout:${callouts}" class="cpost col-12 px-0 m-2 text-center">
+				      <div class="cpost-employee p-1">
+				        <p th:text="${callout.employeeId}" class="mb-1"></p>
+				      </div>
+				      <div class="cpost-comments p-1">
+				        <p th:text="${callout.comments}" class="mb-1"></p>
+				      </div>
+				    </div>
+					
 				</div>
 				
-				
-				<div class="w-100 mt-2 mb-1">
-					<div class="fame-box d-flex flex-column justify-content-center align-items-center align-content-center">
-						<div class="fbox px-2">
-							<p class="text-center mb-0">Hall Of Fame!</p>
+				<div class="col-3 d-flex align-content-center flex-column">
+					<div class="w-100 mt-2 mb-1">
+						<div class="callout-box d-flex flex-column justify-content-center align-items-center align-content-center">
+							<div class="cbox px-2">
+								<p class="text-center mb-0">Callouts!</p>
+							</div>
+							
+							<form class="w-75 d-flex flex-column mb-1" action="#" th:action="@{/save}" th:object="${callout}" method="post">
+								<p class="text-center mb-0 mt-2 smalltext text-white">Add a Callout</p>
+								<input type="number" th:field="*{employeeId}" placeholder="Employee"/>
+								<input type="text" th:field="*{comments}" placeholder="Comments"/>
+								<p class="mx-auto mb-1"><input class="col-7" type="submit" value="Add Callout" /><input class="col-5" type="reset" value="Reset" /></p>
+							</form>
+							
+							<div th:if="${calloutMessage}" class="alert mb-0 alert-success" role="alert">
+						        <span th:text="${calloutMessage}"></span>
+						    </div>
+							
 						</div>
-						
-						<form class="w-75 d-flex flex-column mb-1" action="#" th:action="@{/save_fame}" th:object="${fame}" method="post">
-							<p class="text-center mb-0 mt-2 smalltext">Add an Achievement</p>
-							
-							<input id="listinput" class="mx-auto w-100 mt-1" type="text" th:field="*{fameType}" name="city" list="fametypes" placeholder="Type">
-							    <datalist id="fametypes">
-							    	<option value="Charity Event">
-							    	<option value="Personal Achievement">
-							    </datalist>
-							
-							<input class="mx-auto w-100 mt-1" type="date" th:field="*{fameDate}" />
-							<input class="mx-auto w-100 mt-1" type="text" th:field="*{description}" placeholder="Description"/>
-							<p class="mx-auto mb-1"><input class="col-7" type="submit" value="Add Fame" /><input class="col-5" type="reset" value="Reset" /></p>
-						</form>
-						
-						<div th:if="${fameMessage}" class="alert mb-0 alert-success" role="alert">
-					        <span th:text="${fameMessage}"></span>
-					    </div>
-						
 					</div>
-				</div>
+					
+					<div class="w-100 mt-2 mb-1">
+						<div class="fame-box d-flex flex-column justify-content-center align-items-center align-content-center">
+							<div class="fbox px-2">
+								<p class="text-center mb-0">Hall Of Fame!</p>
+							</div>
+							
+							<form class="w-75 d-flex flex-column mb-1" action="#" th:action="@{/save_fame}" th:object="${fame}" method="post">
+								<p class="text-center mb-0 mt-2 smalltext">Add an Achievement</p>
+								
+								<input id="listinput" class="mx-auto w-100 mt-1" type="text" th:field="*{fameType}" name="city" list="fametypes" placeholder="Type">
+								    <datalist id="fametypes">
+								    	<option value="Charity Event">
+								    	<option value="Personal Achievement">
+								    </datalist>
+								
+								<input class="mx-auto w-100 mt-1" type="date" th:field="*{fameDate}" />
+								<input class="mx-auto w-100 mt-1" type="text" th:field="*{description}" placeholder="Description"/>
+								<p class="mx-auto mb-1"><input class="col-7" type="submit" value="Add Fame" /><input class="col-5" type="reset" value="Reset" /></p>
+							</form>
+							
+							<div th:if="${fameMessage}" class="alert mb-0 alert-success" role="alert">
+						        <span th:text="${fameMessage}"></span>
+						    </div>
+							
+						</div>
+					</div>
 				</div>
 			</div>
 			

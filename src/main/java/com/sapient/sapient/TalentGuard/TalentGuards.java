@@ -9,6 +9,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OrderColumn;
 import jakarta.persistence.Table;
@@ -23,8 +25,31 @@ public class TalentGuards {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="talentguard_id")
 	private int talentguardId;
+	
+	// Remove this when connecting to Employee Table
+	// Remove mentions of this in constructors
 	@Column(name="employee_id")
 	private int employeeId;
+	
+//	@ManyToOne
+//	@JoinColumn(name="employee_id")
+//	private Employee employee;
+//	
+//	public Employee getEmployee() {
+//		return employee;
+//	}
+//
+//	public void setEmployee(Employee employee) {
+//		this.employee = employee;
+//	}
+//	public TalentGuards(Employee employee, ArrayList<Certificates> certs, ArrayList<Experiences> exps) {
+//	super();
+//	this.employee = employee;
+//	this.talentguardId = talentguardId;
+//	this.certs = certs;
+//	this.exps = exps;
+//}
+
 	@OneToMany(mappedBy = "talentguard", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	@OrderColumn
 	private List<Certificates> certs;
@@ -121,4 +146,11 @@ public class TalentGuards {
 	public void setExps(ArrayList<Experiences> exps) {
 		this.exps = exps;
 	}
+
+	@Override
+	public String toString() {
+		return "TalentGuards [talentguardId=" + talentguardId + ", employeeId=" + employeeId + ", certs=" + certs
+				+ ", exps=" + exps + "]";
+	}
+	
 }

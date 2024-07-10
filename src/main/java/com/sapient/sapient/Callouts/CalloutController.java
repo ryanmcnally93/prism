@@ -5,8 +5,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sapient.sapient.HallOfFame.FameRepository;
+import com.sapient.sapient.HallOfFame.FameService;
 import com.sapient.sapient.HallOfFame.Fames;
 import com.sapient.sapient.TalentGuard.Certificates;
 import com.sapient.sapient.TalentGuard.Experiences;
@@ -18,6 +20,8 @@ public class CalloutController {
 	CalloutRepository calloutRepository;
 	@Autowired
 	FameRepository famesrepository;
+	@Autowired
+	CalloutService calloutservice;
 	
 	@GetMapping("/home")
 	public String home(Model model) {
@@ -27,21 +31,17 @@ public class CalloutController {
 		model.addAttribute("exp", exp);
 		Fames fame = new Fames();
 		model.addAttribute("fame", fame);
+		Callout newC = new Callout();
+		model.addAttribute("callout", newC);
 		model.addAttribute("fames", famesrepository.findAll());
 		model.addAttribute("callouts", calloutRepository.findAll());
 		return "index";
 	}
 	
-	@GetMapping("/addcallout")
-	public String addCallout(Model model) {
-		Callout newC = new Callout();
-		model.addAttribute("callout", newC);
-		return "add_callout";
-	}
-	
 	@PostMapping("/save")
-	public String saveCallout(@ModelAttribute("callout") Callout callout) {
-		calloutRepository.save(callout);
+	public String saveCallout(@ModelAttribute("callout") Callout callout, RedirectAttributes redirectAttributes) {
+		calloutservice.addCallout(callout);
+		redirectAttributes.addFlashAttribute("calloutMessage", "Callout added!");
 		return "redirect:/home";
 	}
 	

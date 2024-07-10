@@ -1,13 +1,13 @@
 .callout-box {
-	height: 200px;
-	background-color: turquoise;
+	height: 300px;
+	background-color: green;
 	border-radius: 15px;
 }
 
 .cbox {
-	color: darkturquoise;
+	color: darkgreen;
 	background-color: white;
-	border: 1px solid darkturquoise;
+	border: 1px solid darkgreen;
 	border-radius: 10px;
 	padding: 5px 0;
 }

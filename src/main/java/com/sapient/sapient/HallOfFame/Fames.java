@@ -23,8 +23,33 @@ public class Fames {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="fame_id")
 	private int fameId;
+	
+	// Remove this when connecting to Employee Table
+	// Remove mentions of this in constructors
 	@Column(name="employee_id")
 	private int employeeId;
+	
+//	@ManyToOne
+//	@JoinColumn(name="employee_id")
+//	private Employee employee;
+//	
+//	public Employee getEmployee() {
+//		return employee;
+//	}
+//
+//	public void setEmployee(Employee employee) {
+//		this.employee = employee;
+//	}
+//	public Fames(Employee employee, int employeeId, String fameType, LocalDate fameDate, String description) {
+//	super();
+//	this.employee = employee;
+//	this.fameId = fameId;
+//	this.employeeId = employeeId;
+//	this.fameType = fameType;
+//	this.fameDate = fameDate;
+//	this.description = description;
+//}
+	
 	@Column(name="fame_type")
 	private String fameType;
 	@Column(name="fame_date")
@@ -92,5 +117,11 @@ public class Fames {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	@Override
+	public String toString() {
+		return "Fames [fameId=" + fameId + ", employeeId=" + employeeId + ", fameType=" + fameType + ", fameDate="
+				+ fameDate + ", description=" + description + "]";
 	}
 }

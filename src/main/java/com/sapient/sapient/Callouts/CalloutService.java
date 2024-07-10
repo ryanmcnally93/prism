@@ -4,12 +4,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.sapient.sapient.HallOfFame.Fames;
+
 @Component
 public class CalloutService {
 	@Autowired
 	private CalloutRepository calloutRepository;
 	
-	public boolean addPerson(Callout c) {
+	public boolean addCallout(Callout c) {
 		calloutRepository.save(c);
 		return true;
 	}
