@@ -6,4 +6,3 @@ import jakarta.transaction.Transactional;
 public interface TalentRepository extends JpaRepository<TalentGuards, Integer> {
 	
 }
-// Thing
