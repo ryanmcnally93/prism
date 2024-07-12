@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.sapient.sapient.HallOfFame.Fames;
+import com.sapient.sapient.employees.Employee;
 
 @Component
 public class CalloutService {
@@ -29,10 +30,10 @@ public class CalloutService {
 		return calloutRepository.findAll();
 	}
 	
-	public boolean updateCallout(Callout c, int id, int employeeId, LocalDateTime date, String type, int points, String comments) {
-		c.setEmployeeId(employeeId);
+	public boolean updateCallout(Callout c, int id, Employee employee, LocalDateTime date, int likes, int points, String comments) {
+		c.setEmployee(employee);
 		c.setCalloutDate(date);
-		c.setCalloutType(type);
+		c.setLikes(likes);
 		c.setPoints(points);
 		c.setComments(comments);
 		return true;

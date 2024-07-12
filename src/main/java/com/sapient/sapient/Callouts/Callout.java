@@ -1,10 +1,15 @@
 package com.sapient.sapient.Callouts;
 import java.time.LocalDateTime;
+
+import com.sapient.sapient.employees.Employee;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,72 +20,56 @@ public class Callout {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="callout_id")
 	private int calloutId;
-	
 	// Remove this when connecting to Employee Table
 	// Remove mentions of this in constructors
-	@Column(name="employee_id")
-	private int employeeId;
-	
-//	@ManyToOne
-//	@JoinColumn(name="employee_id")
-//	private Employee employee;
-//	
-//	public Employee getEmployee() {
-//		return employee;
-//	}
-//
-//	public void setEmployee(Employee employee) {
-//		this.employee = employee;
-//	}
-//	public Callout(Employee employee, LocalDate calloutDate, String calloutType, int points, String comments) {
-//		super();
-//		this.employee = employee;
-//		this.calloutDate = calloutDate;
-//		this.calloutType = calloutType;
-//		this.points = points;
-//		this.comments = comments;
-//	}
-	
+//	@Column(name="employee_id")
+//	private int employeeId;
+	@ManyToOne
+	@JoinColumn(name="employee_id")
+	private Employee employee;
 	@Column(name="callout_date")
 	private LocalDateTime calloutDate;
-	@Column(name="callout_type")
-	private String calloutType;
+	@Column(name="callout_likes")
+	private int likes;
 	@Column(name="points")
 	private int points;
 	@Column(name="comments")
 	private String comments;
 
 	public Callout() {};
-	public Callout(int employeeId, LocalDateTime calloutDate, String calloutType, int points, String comments) {
+	public Callout(Employee employee, LocalDateTime calloutDate, int likes, int points, String comments) {
 		super();
-		this.employeeId = employeeId;
+		this.employee = employee;
 		this.calloutDate = LocalDateTime.now();
-		this.calloutType = calloutType;
+		this.likes = likes;
 		this.points = points;
 		this.comments = comments;
 	}
-	public Callout(int employeeId, String comments) {
+	public Callout(Employee employee, String comments) {
 		super();
-		this.employeeId = employeeId;
+		this.employee = employee;
 		this.comments = comments;
 	}
-	public int getEmployeeId() {
-		return employeeId;
+	
+	public Employee getEmployee() {
+		return employee;
 	}
-	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
+	
 	public LocalDateTime getCalloutDate() {
 		return calloutDate;
 	}
 	public void setCalloutDate(LocalDateTime calloutDate) {
 		this.calloutDate = calloutDate;
 	}
-	public String getCalloutType() {
-		return calloutType;
+	public int getLikes() {
+		return likes;
 	}
-	public void setCalloutType(String calloutType) {
-		this.calloutType = calloutType;
+	public void setLikes(int likes) {
+		this.likes = likes;
 	}
 	public int getPoints() {
 		return points;
@@ -99,8 +88,8 @@ public class Callout {
 	}
 	@Override
 	public String toString() {
-		return "Callout [calloutId=" + calloutId + ", employeeId=" + employeeId + ", calloutDate=" + calloutDate
-				+ ", calloutType=" + calloutType + ", points=" + points + ", comments=" + comments + "]";
+		return "Callout [calloutId=" + calloutId + ", employeeId=" + employee + ", calloutDate=" + calloutDate
+				+ ", calloutType=" + likes + ", points=" + points + ", comments=" + comments + "]";
 	}
 
 }

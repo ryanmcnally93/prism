@@ -17,7 +17,7 @@
 					
 					<div class="d-flex flex-row" th:each="talent:${talents}">
 						<p class="mb-0 mr-1" th:text="${talent.talentguardId}"></p>
-						<p class="mb-0 mr-1" th:text="${talent.employeeId}"></p>
+						<p class="mb-0 mr-1" th:text="${talent.employee}"></p>
 						<div class="d-flex flex-row" th:each="cert:${talent.certs}">
 							<p class="mb-0 mr-1" th:text="${cert.name}"></p>
 						</div>

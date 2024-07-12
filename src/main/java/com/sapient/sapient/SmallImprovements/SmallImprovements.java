@@ -2,11 +2,15 @@ package com.sapient.sapient.SmallImprovements;
 
 import java.time.LocalDate;
 
+import com.sapient.sapient.employees.Employee;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,8 +22,9 @@ public class SmallImprovements {
 	@Column(name = "small_improvements_id")
     private int smallImprovementsId;
 	
-	@Column(name = "employee_id")
-	private int employeeId;
+	@ManyToOne
+	@JoinColumn(name="employee_id")
+	private Employee employee;
 
 	@Column(name = "objectives")
 	private String objectives;
@@ -50,11 +55,11 @@ public class SmallImprovements {
 		this.meetingDate = meetingDate;
 	}
 
-	public SmallImprovements(int smallImprovementsId, int employeeId, String objectives, String meetings,
+	public SmallImprovements(int smallImprovementsId, Employee employee, String objectives, String meetings,
 			String feedback, LocalDate dueDate, LocalDate meetingDate) {
 		super();
 		this.smallImprovementsId = smallImprovementsId;
-		this.employeeId = employeeId;
+		this.employee = employee;
 		this.objectives = objectives;
 		this.meetings = meetings;
 		this.feedback = feedback;
@@ -70,12 +75,12 @@ public class SmallImprovements {
 		this.smallImprovementsId = smallImprovementsId;
 	}
 
-	public int getEmployeeId() {
-		return employeeId;
+	public Employee getEmployee() {
+		return employee;
 	}
 
-	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 	public String getObjectives() {
@@ -120,7 +125,7 @@ public class SmallImprovements {
 
 	@Override
 	public String toString() {
-		return "SmallImprovements [smallImprovementsId=" + smallImprovementsId + ", employeeId=" + employeeId
+		return "SmallImprovements [smallImprovementsId=" + smallImprovementsId + ", employeeId=" + employee
 				+ ", objectives=" + objectives + ", meetings=" + meetings + ", feedback=" + feedback + ", dueDate="
 				+ dueDate + ", meetingDate=" + meetingDate + "]";
 	}

@@ -1,4 +1,4 @@
-package com.sapient.employees;
+package com.sapient.sapient.employees;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

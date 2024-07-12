@@ -2,6 +2,9 @@ package com.sapient.sapient.TalentGuard;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.sapient.sapient.employees.Employee;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,72 +31,64 @@ public class TalentGuards {
 	
 	// Remove this when connecting to Employee Table
 	// Remove mentions of this in constructors
-	@Column(name="employee_id")
-	private int employeeId;
+//	@Column(name="employee_id")
+//	private int employeeId;
 	
-//	@ManyToOne
-//	@JoinColumn(name="employee_id")
-//	private Employee employee;
-//	
-//	public Employee getEmployee() {
-//		return employee;
-//	}
-//
-//	public void setEmployee(Employee employee) {
-//		this.employee = employee;
-//	}
-//	public TalentGuards(Employee employee, ArrayList<Certificates> certs, ArrayList<Experiences> exps) {
-//	super();
-//	this.employee = employee;
-//	this.talentguardId = talentguardId;
-//	this.certs = certs;
-//	this.exps = exps;
-//}
-
+	@ManyToOne
+	@JoinColumn(name="employee_id")
+	private Employee employee;
 	@OneToMany(mappedBy = "talentguard", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	@OrderColumn
 	private List<Certificates> certs;
 	@OneToMany(mappedBy = "talentguard", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	@OrderColumn
 	private List<Experiences> exps;
-
+	
 	public TalentGuards() {};
 	
-	public TalentGuards(int talentguardId, int employeeId) {
+	public TalentGuards(int talentguardId, Employee employee) {
 		super();
 		this.talentguardId = talentguardId;
-		this.employeeId = employeeId;
+		this.employee = employee;
 	}
 	
-	public TalentGuards(int talentguardId, int employeeId, ArrayList<Certificates> certs, ArrayList<Experiences> exps) {
+	public TalentGuards(int talentguardId, Employee employee, ArrayList<Certificates> certs, ArrayList<Experiences> exps) {
 		super();
 		this.talentguardId = talentguardId;
-		this.employeeId = employeeId;
+		this.employee = employee;
 		this.certs = certs;
 		this.exps = exps;
 	}
 	
-	public TalentGuards(int employeeId) {
+	public TalentGuards(Employee employee) {
 		super();
-		this.employeeId = employeeId;
+		this.employee = employee;
 	}
 	
-	public TalentGuards(int employeeId, Certificates cert) {
+	public TalentGuards(Employee employee, Certificates cert) {
 		super();
-		this.employeeId = employeeId;
+		this.employee = employee;
 		if(this.certs == null) {
 			this.certs = new ArrayList<Certificates>();
 		}
 		this.addToCerts(cert);
 	}
 	
-	public TalentGuards(int employeeId, Experiences exp) {
+	public TalentGuards(Employee employee, Experiences exp) {
 		super();
-		this.employeeId = employeeId;
+		this.employee = employee;
 		if(this.exps == null) {
 			this.exps = new ArrayList<Experiences>();
 		}
 		this.addToExps(exp);
+	}
+	
+	
+	public TalentGuards(Employee employee, ArrayList<Certificates> certs, ArrayList<Experiences> exps) {
+		super();
+		this.employee = employee;
+		this.certs = certs;
+		this.exps = exps;
 	}
 	
 	public int getTalentguardId() {
@@ -102,12 +97,15 @@ public class TalentGuards {
 	public void setTalentguardId(int talentguardId) {
 		this.talentguardId = talentguardId;
 	}
-	public int getEmployeeId() {
-		return employeeId;
+	
+	public Employee getEmployee() {
+		return employee;
 	}
-	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
+
 	public List<Certificates> getCerts() {
 		if (certs == null) {
 	        certs = new ArrayList<Certificates>();
@@ -149,7 +147,7 @@ public class TalentGuards {
 
 	@Override
 	public String toString() {
-		return "TalentGuards [talentguardId=" + talentguardId + ", employeeId=" + employeeId + ", certs=" + certs
+		return "TalentGuards [talentguardId=" + talentguardId + ", employeeId=" + employee + ", certs=" + certs
 				+ ", exps=" + exps + "]";
 	}
 	

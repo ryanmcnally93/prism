@@ -49,34 +49,32 @@
 					</div>
 				
 					<div class="w-100 my-1">
-						<a th:href="@{/addcallout}">
-							<div class="smallimp-box d-flex justify-content-center align-items-center">
-								<div class="col-10 sibox">
-									<p class="text-center mb-0">Small Improvements!</p>
-									<h2>Upcoming Meetings and Objectives</h2>
-										<h3>Due Soon Objectives</h3>
-									    <div th:each="improvement : ${dueSoonObjectives}">
-									     	<p>Objectives: <span th:text="${improvement.objectives}"></span></p>
-									        <p>Due Date: <span th:text="${improvement.dueDate}"></span></p>
-									    </div>
-										<h3>Next Meeting</h3>
-										<div th:if="${nextMeeting != null}">
-										        <p>Meetings: <span th:text="${nextMeeting.meetings}"></span></p>
-										        <p>Meeting Date: <span th:text="${nextMeeting.meetingDate}"></span></p>
-										</div>
-										<div th:if="${nextMeeting == null}">
-										        <p>No upcoming meetings.</p>
-										</div>
-										<h3>Most Recent Feedback</h3>
-										<div th:if="${mostRecentFeedback != null}">
-										        <p>Feedback: <span th:text="${mostRecentFeedback.feedback}"></span></p>
-										</div>
-										<div th:if="${mostRecentFeedback == null}">
-											<p>No feedback available.</p>
-										</div>
+						<div class="smallimp-box d-flex justify-content-center align-items-center">
+							<div class="col-10 sibox">
+								<p class="text-center mb-0">Small Improvements!</p>
+								<h2>Upcoming Meetings and Objectives</h2>
+								<h3>Due Soon Objectives</h3>
+							    <div th:each="improvement : ${dueSoonObjectives}">
+							     	<p>Objectives: <span th:text="${improvement.objectives}"></span></p>
+							        <p>Due Date: <span th:text="${improvement.dueDate}"></span></p>
+							    </div>
+								<h3>Next Meeting</h3>
+								<div th:if="${nextMeeting != null}">
+								        <p>Meetings: <span th:text="${nextMeeting.meetings}"></span></p>
+								        <p>Meeting Date: <span th:text="${nextMeeting.meetingDate}"></span></p>
+								</div>
+								<div th:if="${nextMeeting == null}">
+								        <p>No upcoming meetings.</p>
+								</div>
+								<h3>Most Recent Feedback</h3>
+								<div th:if="${mostRecentFeedback != null}">
+								        <p>Feedback: <span th:text="${mostRecentFeedback.feedback}"></span></p>
+								</div>
+								<div th:if="${mostRecentFeedback == null}">
+									<p>No feedback available.</p>
 								</div>
 							</div>
-						</a>
+						</div>
 					</div>
 				</div>
 				
@@ -93,16 +91,24 @@
 					      <div class="post-desc p-1">
 					        <p th:text="${fame.description}" class="mb-1"></p>
 					      </div>
+						  <div class="cpost-employee p-1">
+  					        <p th:text="${fame.employee.fName}" class="mb-1"></p>
+  					      </div>
 					      <div class="post-desc p-1">
 					        <p th:text="${#temporals.format(fame.fameDate, 'HH:mm:ss')}" class="mb-1 text-right mr-2"></p>
 					      </div>
+						  <form action="#" th:action="@{/saveFame/{id}(id=${fame.fameId})}" method="post">
+	  						    <button><input type="submit" value="like" /></button>
+	  						</form>
+	  						<p th:text="${fame.likes}"></p>
 					    </div>
+						
 						
 						<!-- This feed is currently looking for 'Callouts' -->
 						<!-- We will have to update for 'Posts' -->
 						<div th:each="callout:${callouts}" class="cpost col-12 px-0 m-2 text-center">
 					      <div class="cpost-employee p-1">
-					        <p th:text="${callout.employeeId}" class="mb-1"></p>
+					        <p th:text="${callout.employee.fName}" class="mb-1"></p>
 					      </div>
 					      <div class="cpost-comments p-1">
 					        <p th:text="${callout.comments}" class="mb-1"></p>
@@ -110,6 +116,10 @@
 						  <div class="cpost-comments p-1">
   					        <p th:text="${#temporals.format(callout.calloutDate, 'HH:mm:ss')}" class="mb-1 text-right mr-2"></p>
   					      </div>
+						  <form action="#" th:action="@{/saveCallout/{id}(id=${callout.calloutId})}" method="post">
+						      <button><input type="submit" value="like" /></button>
+						  </form>
+						  <p th:text="${callout.likes}"></p>
 					    </div>
 					</div>
 				</div>
@@ -123,10 +133,14 @@
 							
 							<form class="w-75 d-flex flex-column mb-1" action="#" th:action="@{/save}" th:object="${callout}" method="post">
 								<p class="text-center mb-0 mt-2 smalltext text-white">Add a Callout</p>
-								<input type="number" th:field="*{employeeId}" placeholder="Employee"/>
+								<input type="number" th:field="*{employee}" placeholder="Employee"/>
 								<input type="text" th:field="*{comments}" placeholder="Comments"/>
 								<p class="mx-auto mb-1"><input class="col-7" type="submit" value="Add Callout" /><input class="col-5" type="reset" value="Reset" /></p>
 							</form>
+							
+							<!--<datalist id="fametypes" th:each="employee:${employees}">
+						    	<option th:field="*{employee}" value="*{employee}">
+						    </datalist>-->
 							
 							<div th:if="${calloutMessage}" class="alert mb-0 alert-success" role="alert">
 						        <span th:text="${calloutMessage}"></span>
@@ -143,6 +157,8 @@
 							
 							<form class="w-75 d-flex flex-column mb-1" action="#" th:action="@{/save_fame}" th:object="${fame}" method="post">
 								<p class="text-center mb-0 mt-2 smalltext">Add an Achievement</p>
+								
+								<input type="number" th:field="*{employee}" placeholder="Employee"/>
 								
 								<input id="listinput" class="mx-auto w-100 mt-1" type="text" th:field="*{fameType}" name="city" list="fametypes" placeholder="Type">
 								    <datalist id="fametypes">

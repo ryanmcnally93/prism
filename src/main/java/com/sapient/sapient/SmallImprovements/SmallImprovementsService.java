@@ -28,7 +28,7 @@ public class SmallImprovementsService {
     public SmallImprovements updateImprovement(int id, SmallImprovements improvementDetails) {
         SmallImprovements improvement = smallImprovementsRepository.findById(id).orElse(null);
         if (improvement != null) {
-        	improvement.setEmployeeId(improvementDetails.getEmployeeId());
+        	improvement.setEmployee(improvementDetails.getEmployee());
             improvement.setObjectives(improvementDetails.getObjectives());
             improvement.setMeetings(improvementDetails.getMeetings());
             improvement.setFeedback(improvementDetails.getFeedback());
