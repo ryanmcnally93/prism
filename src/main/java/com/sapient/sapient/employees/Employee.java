@@ -1,5 +1,6 @@
 package com.sapient.sapient.employees;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import com.sapient.sapient.Callouts.Callout;
 import jakarta.persistence.*;
@@ -41,7 +42,6 @@ public class Employee {
 		this.role = role;
 		this.isFriend = isFriend;
 		this.isManager = isManager;
-		
 	}
 	public Employee() {
 	}
@@ -100,6 +100,11 @@ public class Employee {
 	public void setIsManager(Boolean isManager) {
 		this.isManager = isManager;
 	}
-
+	public void setFriend(boolean isFriend) {
+		this.isFriend = isFriend;
+	}
+	public void setManager(boolean isManager) {
+		this.isManager = isManager;
+	}
 
 }

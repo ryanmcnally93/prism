@@ -1,19 +1,74 @@
-.callout-box {
-	height: 300px;
-	background-color: green;
+.widget-box {
+	height: 250px;
+	background-color: #052831;
 	border-radius: 15px;
+	border: 1px solid #00c6c2;
 }
 
 .cbox {
-	color: darkgreen;
-	background-color: white;
-	border: 1px solid darkgreen;
+	color: #00c6c2;
+	background-color: rgb(255,255,255,0.2);
 	border-radius: 10px;
 	padding: 5px 0;
 }
 
+.famename {
+    left: 35px;
+	top: 10px;
+    font-style: italic;
+}
+
+.logobox {
+	width: 80%;
+	height: 80px;
+	overflow: hidden;
+}
+
+.logo {
+	width: 300px;
+	margin-top: -35px;
+	height: fit-content;
+}
+
+.commenttrigger {
+    right: 15px;
+    font-style: italic;
+}
+
+.defaultnone {
+	display: none;
+	background-color: #052831;
+	border-radius: 10px;
+	color: white;
+	padding: 10px 0;
+}
+
+.viewcomments {
+	text-align: right;
+	margin-right: 10px;
+	font-style: italic;
+	font-size: 12px;
+}
+.viewcomments:hover {
+	color: white;
+	cursor: pointer;
+}
+
+.like-button {
+	background-color: white;
+	color: green;
+	border: 1px solid darkgreen;
+	border-radius: 5px;
+}
+
+.like-button:hover {
+	background-color: green;
+	color: white;
+}
+
+
 .mainfeed {
-	height: 550px;
+	height: 525px;
 	overflow: hidden;
 	padding-right: 8px;
 }
@@ -22,10 +77,9 @@
 	overflow-x: hidden;
 }
 
-.fame-box {
-	height: 300px;
-	background-color: yellow;
-	border-radius: 15px;
+.alltalentbox {
+	border: 1px solid turquoise;
+	border-radius: 10px;
 }
 
 #listinput {
@@ -33,18 +87,11 @@
 }
 
 .fbox {
-	color: black;
-	background-color: white;
-	border: 1px solid gold;
-	border-radius: 10px;
 	padding: 5px 0;
 }
 
 .talent-box {
-	height: 370px;
-	background-color: #00c6c2;
-	border-radius: 15px;
-	padding: 5px;
+	height: 350px !important;
 }
 
 .text-right{
@@ -72,53 +119,26 @@ input[type=number] {
 -moz-appearance: textfield;
 }
 
-.tbox {
-	color: #00A8A5;
-	background-color: white;
-	border: 1px solid #00A8A5;
-	border-radius: 10px;
-	padding: 5px 0;
-}
-
 .smallimp-box {
-	height: 230px;
-	background-color: orange;
-	border-radius: 15px;
+	height: 350px !important;
+	color: white;
 }
 
-.sibox {
-	color: orange;
-	background: white;
-	border: 1px solid darkorange;
-	border-radius: 20px;
-	padding: 5px 0;
+.fakelink:hover {
+	cursor: pointer;
+	text-decoration: underline;
 }
+
+a.cbox.px-2:hover {
+    text-decoration: none;
+    color: white;
+}
+
 .post {
-	border: 1px solid black;
 	border-radius: 10px;
 	overflow: hidden;
-}
-
-.post-type {
-	background-color: yellow;
-}
-
-.post-desc {
-	background-color: gold;
-}
-.post-date {
-	background-color: yellow;
 }
 .cpost {
-	border: 1px solid black;
-	border-radius: 10px;
-	overflow: hidden;
-}
-.cpost-employee {
-	background-color: green;
-	color: white;
-}
-.cpost-comments {
-	background-color: darkgreen;
-	color: white;
+	background-color: #00c6c2;
+	color: #052831;
 }

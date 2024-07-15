@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.sapient.sapient.employees.Employee;
+import com.sapient.sapient.employees.EmployeeRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -12,6 +13,8 @@ import jakarta.transaction.Transactional;
 public class TalentService {
 	@Autowired
 	private TalentRepository talentrepository;
+	@Autowired
+	private EmployeeRepository employeerepo;
 	
 	public boolean addTalent(TalentGuards t) {
 		talentrepository.save(t);
@@ -19,26 +22,37 @@ public class TalentService {
 	}
 	
     public void saveCert(Certificates cert) {
-        if(talentrepository.findById(5).isPresent()) {
-        	TalentGuards t = talentrepository.findById(5).orElseThrow(() -> new RuntimeException("TalentGuards not found"));
-        	t.addToCerts(cert);
-        	talentrepository.save(t);
-        } else {
-    		TalentGuards t = new TalentGuards();
-        	t.addToCerts(cert);
-        	talentrepository.save(t);
-        }
+    	if(employeerepo.findById(5).isPresent()) {
+    		if(talentrepository.findById(1).isPresent()) {
+            	TalentGuards t = talentrepository.findById(1).orElseThrow(() -> new RuntimeException("TalentGuards not found"));
+            	t.addToCerts(cert);
+            	talentrepository.save(t);
+            } else {
+            	Employee e = employeerepo.findById(5).orElseThrow(() -> new RuntimeException("TalentGuards not found"));
+        		TalentGuards t = new TalentGuards(e);
+            	t.addToCerts(cert);
+            	talentrepository.save(t);
+            }
+    	} else {
+    		System.out.println("Couldn't find user");
+    	}
+        
     }
 	
     public void saveExp(Experiences exp) {
-    	if(talentrepository.findById(5).isPresent()) {
-	        TalentGuards t = talentrepository.findById(5).orElseThrow(() -> new RuntimeException("TalentGuards not found"));
-	        t.addToExps(exp);
-	        talentrepository.save(t);
+    	if(employeerepo.findById(5).isPresent()) {
+	    	if(talentrepository.findById(1).isPresent()) {
+		        TalentGuards t = talentrepository.findById(1).orElseThrow(() -> new RuntimeException("TalentGuards not found"));
+		        t.addToExps(exp);
+		        talentrepository.save(t);
+	    	} else {
+	    		Employee e = employeerepo.findById(5).orElseThrow(() -> new RuntimeException("TalentGuards not found"));
+        		TalentGuards t = new TalentGuards(e);
+	        	t.addToExps(exp);
+	        	talentrepository.save(t);
+	    	}
     	} else {
-    		TalentGuards t = new TalentGuards();
-        	t.addToExps(exp);
-        	talentrepository.save(t);
+    		System.out.println("Couldn't find user");
     	}
     }
 	

@@ -1,8 +1,8 @@
 package com.sapient.sapient.HallOfFame;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import com.sapient.sapient.employees.Employee;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,11 +11,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
-
+import com.sapient.sapient.Callouts.CommonAttribute;
 
 @Entity
 @Table(name="fames")
-public class Fames {
+public class Fames implements CommonAttribute {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -32,7 +32,8 @@ public class Fames {
 	@ManyToOne
 	@JoinColumn(name="employee_id")
 	private Employee employee;
-	
+	@Column(name = "comments")
+	private ArrayList<String> comments;
 	@Column(name="fame_type")
 	private String fameType;
 	@Column(name="fame_date")
@@ -46,6 +47,7 @@ public class Fames {
 		super();
 		this.fameId = fameId;
 		this.employee = employee;
+		this.comments = new ArrayList<String>();
 	}
 	
 	public Fames(int fameId, Employee employee, String fameType, LocalDateTime fameDate, String description) {
@@ -55,11 +57,13 @@ public class Fames {
 		this.fameType = fameType;
 		this.fameDate =  LocalDateTime.now();
 		this.description = description;
+		this.comments = new ArrayList<String>();
 	}
 	
 	public Fames(Employee employee) {
 		super();
 		this.employee = employee;
+		this.comments = new ArrayList<String>();
 	}
 	
 	public Employee getEmployee() {
@@ -105,7 +109,15 @@ public class Fames {
 	public String getDescription() {
 		return description;
 	}
-
+	public ArrayList<String> getComments() {
+		return comments;
+	}
+	public void addToComments(String comment) {
+		if(comments == null) {
+			comments = new ArrayList<String>();
+		}
+		this.comments.add(comment);
+	}
 	public void setDescription(String description) {
 		this.description = description;
 	}
@@ -114,5 +126,15 @@ public class Fames {
 	public String toString() {
 		return "Fames [fameId=" + fameId + ", employeeId=" + employee + ", fameType=" + fameType + ", fameDate="
 				+ fameDate + ", description=" + description + "]";
+	}
+
+	@Override
+	public LocalDateTime getDate() {
+		return this.getFameDate();
+	}
+
+	@Override
+	public String getType() {
+		return "fame";
 	}
 }

@@ -35,7 +35,7 @@ public class CalloutService {
 		c.setCalloutDate(date);
 		c.setLikes(likes);
 		c.setPoints(points);
-		c.setComments(comments);
+		c.setMessage(comments);
 		return true;
 	}
 }

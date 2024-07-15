@@ -33,25 +33,25 @@ public class SmallImprovementsController {
         return "redirect:/home";
     }
 
-    @PostMapping
-    public SmallImprovements createImprovement(@RequestBody SmallImprovements smallImprovements) {
-        return smallImprovementsService.saveImprovement(smallImprovements);
-    }
-
-    @PutMapping("/{id}")
-    public SmallImprovements updateImprovement(@PathVariable int id, @RequestBody SmallImprovements smallImprovements) {
-        SmallImprovements existingImprovement = smallImprovementsService.getImprovementById(id);
-        if (existingImprovement != null) {
-            existingImprovement.setObjectives(smallImprovements.getObjectives());
-            existingImprovement.setMeetings(smallImprovements.getMeetings());
-            existingImprovement.setFeedback(smallImprovements.getFeedback());
-            return smallImprovementsService.saveImprovement(existingImprovement);
-        }
-        return null;
-    }
-
-    @DeleteMapping("/{id}")
-    public void deleteImprovement(@PathVariable int id) {
-    	smallImprovementsService.deleteImprovement(id);
-    }
+//    @PostMapping
+//    public SmallImprovements createImprovement(@RequestBody SmallImprovements smallImprovements) {
+//        return smallImprovementsService.saveImprovement(smallImprovements);
+//    }
+//
+//    @PutMapping("/{id}")
+//    public SmallImprovements updateImprovement(@PathVariable int id, @RequestBody SmallImprovements smallImprovements) {
+//        SmallImprovements existingImprovement = smallImprovementsService.getImprovementById(id);
+//        if (existingImprovement != null) {
+//            existingImprovement.setObjectives(smallImprovements.getObjectives());
+//            existingImprovement.setMeetings(smallImprovements.getMeetings());
+//            existingImprovement.setFeedback(smallImprovements.getFeedback());
+//            return smallImprovementsService.saveImprovement(existingImprovement);
+//        }
+//        return null;
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public void deleteImprovement(@PathVariable int id) {
+//    	smallImprovementsService.deleteImprovement(id);
+//    }
 }

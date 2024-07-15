@@ -1,8 +1,8 @@
 package com.sapient.sapient.Callouts;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import com.sapient.sapient.employees.Employee;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="callouts")
-public class Callout {
+public class Callout implements CommonAttribute {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -33,22 +33,26 @@ public class Callout {
 	private int likes;
 	@Column(name="points")
 	private int points;
-	@Column(name="comments")
-	private String comments;
+	@Column(name="message")
+	private String message;
+	@Column(name = "comments")
+	private ArrayList<String> comments;
 
 	public Callout() {};
-	public Callout(Employee employee, LocalDateTime calloutDate, int likes, int points, String comments) {
+	public Callout(Employee employee, LocalDateTime calloutDate, int likes, int points, String message) {
 		super();
 		this.employee = employee;
 		this.calloutDate = LocalDateTime.now();
 		this.likes = likes;
 		this.points = points;
-		this.comments = comments;
+		this.message = message;
+		this.comments = new ArrayList<String>();
 	}
-	public Callout(Employee employee, String comments) {
+	public Callout(Employee employee, String message) {
 		super();
 		this.employee = employee;
-		this.comments = comments;
+		this.message = message;
+		this.comments = new ArrayList<String>();
 	}
 	
 	public Employee getEmployee() {
@@ -77,11 +81,11 @@ public class Callout {
 	public void setPoints(int points) {
 		this.points = points;
 	}
-	public String getComments() {
-		return comments;
+	public String getMessage() {
+		return message;
 	}
-	public void setComments(String comments) {
-		this.comments = comments;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 	public int getCalloutId() {
 		return calloutId;
@@ -89,7 +93,24 @@ public class Callout {
 	@Override
 	public String toString() {
 		return "Callout [calloutId=" + calloutId + ", employeeId=" + employee + ", calloutDate=" + calloutDate
-				+ ", calloutType=" + likes + ", points=" + points + ", comments=" + comments + "]";
+				+ ", calloutType=" + likes + ", points=" + points + ", message=" + message + "]";
+	}
+	@Override
+	public LocalDateTime getDate() {
+		return this.getCalloutDate();
+	}
+	public ArrayList<String> getComments() {
+		return comments;
+	}
+	public void addToComments(String comment) {
+		if(comments == null) {
+			comments = new ArrayList<String>();
+		}
+		this.comments.add(comment);
+	}
+	@Override
+	public String getType() {
+		return "callout";
 	}
 
 }
