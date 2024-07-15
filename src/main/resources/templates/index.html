@@ -75,11 +75,19 @@
 						</div>
 					</div>
 					<a class="text-center" th:href="@{/talentguards}">View Profile</a>
+					
+					<p>Filter by team</p>
+					<select id="choice">
+						<option value="All">All</option>
+						<option value="1">Footloose</option>
+						<option value="2">Greggs</option>
+					</select>
+					
 					<div class="mainfeed">
 						<div th:each="post:${posts}" class="post col-12 px-0 my-2 text-center">
 							
 							<!-- Callout Posts -->
-							<div th:if="${post != null and post.type == 'callout'}">
+							<div th:if="${post != null and post.type == 'callout'}" th:class="${post.employee.team}">
 								<div class="post col-12 px-0 my-2 text-center">
 							      <div class="cpost p-1">
 							        <p th:text="${post.employee.fName}" class="mb-1 mt-1"></p>
@@ -113,7 +121,7 @@
 							</div>
 							
 							<!-- Hall Of Fame Post -->
-							<div th:if="${post != null and post.type == 'fame'}">
+							<div th:if="${post != null and post.type == 'fame'}" th:class="${post.employee.team}">
 								<div class="post col-12 px-0 my-2 text-center">
 							      <div class="row justify-content-center cpost p-1 position-relative">
 									<div class="position-absolute famename">
