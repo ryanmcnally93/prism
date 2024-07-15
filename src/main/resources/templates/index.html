@@ -48,32 +48,33 @@
 						</div>
 					</div>
 				
-					<div class="w-100 my-1">
-						<div class="smallimp-box d-flex justify-content-center align-items-center">
-							<div class="col-10 sibox">
-								<p class="text-center mb-0">Small Improvements!</p>
-								<h2>Upcoming Meetings and Objectives</h2>
-								<h3>Due Soon Objectives</h3>
-							    <div th:each="improvement : ${dueSoonObjectives}">
-							     	<p>Objectives: <span th:text="${improvement.objectives}"></span></p>
-							        <p>Due Date: <span th:text="${improvement.dueDate}"></span></p>
-							    </div>
-								<h3>Next Meeting</h3>
-								<div th:if="${nextMeeting != null}">
-								        <p>Meetings: <span th:text="${nextMeeting.meetings}"></span></p>
-								        <p>Meeting Date: <span th:text="${nextMeeting.meetingDate}"></span></p>
-								</div>
-								<div th:if="${nextMeeting == null}">
-								        <p>No upcoming meetings.</p>
-								</div>
-								<h3>Most Recent Feedback</h3>
-								<div th:if="${mostRecentFeedback != null}">
-								        <p>Feedback: <span th:text="${mostRecentFeedback.feedback}"></span></p>
-								</div>
-								<div th:if="${mostRecentFeedback == null}">
-									<p>No feedback available.</p>
-								</div>
-							</div>
+					 <div class="w-100 my-1">
+                <div class="smallimp-box d-flex flex-column justify-content-center align-items-center align-content-center">
+                    <div class="sibox px-2">
+                        <p class="text-center mb-0">Small Improvements!</p>
+			                    </div>
+			                    <div class="col-10 sibox">
+			                	<h2>Upcoming Meetings and Objectives</h2>
+			                        <h3>Due Soon Objectives</h3>
+			                        <div th:each="improvement : ${dueSoonObjectives}">
+			                            <p>Objectives: <span th:text="${improvement.objectives}"></span></p>
+			                            <p>Due Date: <span th:text="${improvement.dueDate}"></span></p>
+			                        </div>
+			                        <h3>Next Meeting</h3>
+			                        <div th:if="${nextMeeting != null}">
+			                            <p>Meetings: <span th:text="${nextMeeting.meetings}"></span></p>
+			                            <p>Meeting Date: <span th:text="${nextMeeting.meetingDate}"></span></p>
+			                        </div>
+			                        <div th:if="${nextMeeting == null}">
+			                            <p>No upcoming meetings.</p>
+			                        </div>
+			                        <h3>Most Recent Feedback</h3>
+			                        <div th:if="${mostRecentFeedback != null}">
+			                            <p>Feedback: <span th:text="${mostRecentFeedback.feedback}"></span></p>
+			                        </div>
+			                        <div th:if="${mostRecentFeedback == null}">
+			                            <p>No feedback available.</p>
+			                        </div>
 						</div>
 					</div>
 				</div>
