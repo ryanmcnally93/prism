@@ -149,16 +149,17 @@
 
 
                     <div class="post col-12 px-0 mb-0 text-center cpost">
-                        <div class="row d-flex align-content-center mb-1" id="postlogo"><img src="/callout.png"></div>
+                        <div class="row d-flex align-content-center" id="postlogo"><img src="/callout.png"></div>
 
                         <div class="position-absolute famename">
-                            <p th:text="${post.employee.fName + ' ' + post.employee.lName}" class="mb-1 mt-3 text-left"></p>
+                            <p th:text="${post.employee.fName + ' ' + post.employee.lName}" class=" mt-3 text-left"></p>
                         </div>
+                        <p th:text="'From: Simon Sapient'" class="font-italic  mb-0"></p>
                         <div class="position-absolute famedate">
                             <p th:text="${#temporals.format(post.calloutDate, 'HH:mm:ss')}"
-                               class="mb-1 mt-3 text-right "></p>
+                               class=" mt-3 text-right "></p>
                         </div>
-                        <hr class="mt-4">
+                        <hr class="mt-1">
                         <div class="cpost p-1">
                             <p th:text="${post.message}" class="mb-1 mt-3"></p>
                         </div>
