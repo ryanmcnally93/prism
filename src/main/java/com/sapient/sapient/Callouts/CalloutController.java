@@ -1,4 +1,6 @@
 package com.sapient.sapient.Callouts;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -48,17 +50,18 @@ public class CalloutController {
 		model.addAttribute("fame", fame);
 		Callout newC = new Callout();
 		model.addAttribute("callout", newC);
-		// This organises all the 'callouts' by time and reverses them
-		List<Callout> sortedCallouts = calloutRepository.findAll();
-		Collections.sort(sortedCallouts, Comparator.comparing(Callout::getCalloutDate).reversed());
-		// This organises all the 'fames' by time and reverses them
-		System.out.println(famesrepository.findAll());
-		List<Fames> sortedFames = famesrepository.findAll();
-		Collections.sort(sortedFames, Comparator.comparing(Fames::getFameDate).reversed());
-		System.out.println(sortedFames);
+		
+		List<Callout> allCallouts = calloutRepository.findAll();
+        List<Fames> allFames = famesrepository.findAll();
+        List<CommonAttribute> allPosts = new ArrayList<>();
+        allPosts.addAll(allCallouts);
+        allPosts.addAll(allFames);
+        Collections.sort(allPosts, Comparator.comparing(CommonAttribute::getDate).reversed());
+        
 		// Pass fames and callouts to HTML
-		model.addAttribute("callouts", sortedCallouts);
-		model.addAttribute("fames", sortedFames);
+		model.addAttribute("callouts", allCallouts);
+		model.addAttribute("fames", allFames);
+		model.addAttribute("posts", allPosts);
         model.addAttribute("dueSoonObjectives", smallImprovementsService.getDueSoonObjectives());
         model.addAttribute("nextMeeting", smallImprovementsService.getNextMeeting());
         model.addAttribute("mostRecentFeedback", smallImprovementsService.getMostRecentFeedback());

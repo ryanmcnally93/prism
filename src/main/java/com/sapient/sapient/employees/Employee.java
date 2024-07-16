@@ -1,5 +1,6 @@
 package com.sapient.sapient.employees;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import com.sapient.sapient.Callouts.Callout;
 import jakarta.persistence.*;
@@ -18,6 +19,8 @@ public class Employee {
 	private String fName;
 	@Column(name="last_name")
 	private String lName;
+	@Column(name="team")
+	private int team;
 	@Column(name="DOB")
 	private LocalDate dob;
 	@Column(name="email")
@@ -30,18 +33,18 @@ public class Employee {
 	private boolean isFriend;
 	@Column(name="is_manager")
 	private boolean isManager;
-	public Employee(String fName, String lName, LocalDate dob, String email, String tPhone, String role,
+	public Employee(String fName, String lName, int team, LocalDate dob, String email, String tPhone, String role,
 			boolean isFriend, boolean isManager) {
 
 		this.fName = fName;
 		this.lName = lName;
+		this.team = team;
 		this.dob = dob;
 		this.email = email;
 		this.tPhone = tPhone;
 		this.role = role;
 		this.isFriend = isFriend;
 		this.isManager = isManager;
-		
 	}
 	public Employee() {
 	}
@@ -100,6 +103,17 @@ public class Employee {
 	public void setIsManager(Boolean isManager) {
 		this.isManager = isManager;
 	}
-
+	public void setFriend(boolean isFriend) {
+		this.isFriend = isFriend;
+	}
+	public void setManager(boolean isManager) {
+		this.isManager = isManager;
+	}
+	public int getTeam() {
+		return team;
+	}
+	public void setTeam(int team) {
+		this.team = team;
+	}
 
 }
