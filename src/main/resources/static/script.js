@@ -15,7 +15,9 @@ function commentsFameTrigger(id) {
 	}
 }
 
+/* This was a previous solution when using datasets instead of select elements */
 document.addEventListener("DOMContentLoaded", function () {
+	/*
 	document.getElementById('calloutlistinput').addEventListener('input', function() {
 		console.log("Changed");
 	    const input = this;
@@ -43,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		            break;
 		        }
 		    }
-		});
+		});*/
 });
 
 document.addEventListener("DOMContentLoaded", function () {
