@@ -16,6 +16,37 @@ function commentsFameTrigger(id) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+	document.getElementById('calloutlistinput').addEventListener('input', function() {
+		console.log("Changed");
+	    const input = this;
+	    const list = document.getElementById('calloutEmployee');
+	    const hiddenInput = document.getElementById('employeeId');
+	    hiddenInput.value = '';
+	
+	    for (let option of list.options) {
+	        if (option.value === input.value) {
+	            hiddenInput.value = option.dataset.id;
+	            break;
+	        }
+	    }
+	});
+	document.getElementById('famelistinput').addEventListener('input', function() {
+			console.log("Changed");
+		    const input = this;
+		    const list = document.getElementById('fameEmployee');
+		    const hiddenInput = document.getElementById('fameemployeeId');
+		    hiddenInput.value = '';
+		
+		    for (let option of list.options) {
+		        if (option.value === input.value) {
+		            hiddenInput.value = option.dataset.id;
+		            break;
+		        }
+		    }
+		});
+});
+
+document.addEventListener("DOMContentLoaded", function () {
 document
     .getElementById("choice")
     .addEventListener("change", function (event) {

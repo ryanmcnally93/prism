@@ -10,6 +10,22 @@ body{
 	border: 1px solid #00c6c2;
 }
 
+select#employee-select, #fame-employee-select {
+    border-radius: 2px;
+    padding: 0;
+    height: 24px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+#callout-formgroup {
+	margin-bottom: 0.25rem;
+}
+
+#fame-formgroup {
+	margin-bottom: 0;
+}
+
 #fameteam, #calloutteam {
 	display: none;
 }
