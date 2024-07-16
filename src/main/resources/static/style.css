@@ -70,9 +70,12 @@
 	color: white;
 }
 
+#choice {
+	margin: 5px 0;
+}
 
 .mainfeed {
-	height: 525px;
+	height: 480px;
 	overflow: hidden;
 	padding-right: 8px;
 }

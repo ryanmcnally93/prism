@@ -76,12 +76,18 @@
 					</div>
 					<a class="text-center" th:href="@{/talentguards}">View Profile</a>
 					
-					<p>Filter by team</p>
-					<select id="choice">
-						<option value="All">All</option>
-						<option value="1">Footloose</option>
-						<option value="2">Greggs</option>
-					</select>
+					<div class="row">
+						<div class="col-6 d-flex row-reverse justift-content-end">
+							<p class="mb-0 pt-1">Filter by team</p>
+						</div>
+						<div class="col-6">
+							<select id="choice">
+								<option value="All">All</option>
+								<option value="1">Footloose</option>
+								<option value="2">Greggs</option>
+							</select>
+						</div>
+					</div>
 					
 					<div class="mainfeed">
 						<div th:each="post:${posts}" class="post col-12 px-0 my-2 text-center">
