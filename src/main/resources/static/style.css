@@ -87,13 +87,13 @@ select#employee-select, #fame-employee-select {
 
 .like-button {
 	background-color: white;
-	color: green;
+	color: #052831;
 	border: 1px solid darkgreen;
 	border-radius: 5px;
 }
 
 .like-button:hover {
-	background-color: green;
+	background-color:#052831;
 	color: white;
 }
 
