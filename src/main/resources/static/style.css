@@ -1,3 +1,8 @@
+body{
+    background-color: #fdf7ea;
+    font-family:Helvetica;
+}
+
 .widget-box {
 	height: 250px;
 	background-color: #052831;
@@ -18,6 +23,12 @@
 
 .famename {
     left: 35px;
+	top: 10px;
+    font-style: italic;
+}
+
+.famedate{
+    right: 35px;
 	top: 10px;
     font-style: italic;
 }
@@ -78,6 +89,9 @@
 	height: 480px;
 	overflow: hidden;
 	padding-right: 8px;
+	border:1px solid #052831;
+	padding-left:0.5rem;
+	border-radius:15px;
 }
 .mainfeed:hover {
 	overflow-y: scroll;
@@ -148,4 +162,13 @@ a.cbox.px-2:hover {
 .cpost {
 	background-color: #00c6c2;
 	color: #052831;
+}
+
+.bg-dark{
+    background-color:#052831  !important;
+}
+
+#vlogo{
+    width:90px;
+    margin-top:2px;
 }
