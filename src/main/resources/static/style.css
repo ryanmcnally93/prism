@@ -7,7 +7,7 @@ body{
 	height: 250px;
 	background-color: #052831;
 	border-radius: 15px;
-	border: 1px solid #00c6c2;
+	border: 2px solid #00c6c2;
 }
 
 select#employee-select, #fame-employee-select {
@@ -214,4 +214,17 @@ a.cbox.px-2:hover {
 .widgetlogo img{
     height:50px;
     width:auto;
+}
+
+hr{
+    border:1px solid #052831;
+}
+
+.borderfix{
+    border-bottom: 2px solid  #052831;
+    margin-top:0px;
+}
+
+.font-italic {
+    font-style: italic;
 }

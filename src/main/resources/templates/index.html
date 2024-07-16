@@ -128,7 +128,7 @@
     <div class="col-6 d-flex flex-column">
 
 
-        <div class="row my-2">
+        <div class="row mt-2">
             <div class="col-6 d-flex justify-content-end">
                 <p class="mb-0 pt-1">Filter by team</p>
             </div>
@@ -152,14 +152,15 @@
                         <div class="row d-flex align-content-center mb-1" id="postlogo"><img src="/callout.png"></div>
 
                         <div class="position-absolute famename">
-                            <p th:text="${post.employee.fName}" class="mb-1 mt-3 text-left"></p>
+                            <p th:text="${post.employee.fName + ' ' + post.employee.lName}" class="mb-1 mt-3 text-left"></p>
                         </div>
                         <div class="position-absolute famedate">
                             <p th:text="${#temporals.format(post.calloutDate, 'HH:mm:ss')}"
-                               class="mb-1 mt-3 text-right mr-2"></p>
+                               class="mb-1 mt-3 text-right "></p>
                         </div>
+                        <hr class="mt-4">
                         <div class="cpost p-1">
-                            <p th:text="${post.message}" class="mb-1"></p>
+                            <p th:text="${post.message}" class="mb-1 mt-3"></p>
                         </div>
                         <div class="cpost p-1">
                             <div class="row d-flex">
@@ -192,34 +193,33 @@
                 <div th:if="${post != null and post.type == 'fame'}" th:class="${post.employee.team}">
                     <div class="post col-12 px-0 my-2 text-center">
                         <div class="row d-flex align-content-center mb-0 pl-2" id="postlogo2"><img src="/hof.png"></div>
-                        <div class="row justify-content-center cpost p-1 position-relative">
-
-                            <div class="position-absolute famename">
-                                <p th:text="${post.employee.fName}"  class="mb-1 mt-0 text-left"></p>
+                            <div class="row justify-content-center cpost position-relative borderfix">
+                                <div class="position-absolute famename my-0">
+                                    <p th:text="${post.employee.fName + ' ' + post.employee.lName}" class="text-left"></p>
+                                </div>
+                                <p th:text="${post.fameType}" class="font-weight-bold font-italic pt-2 mb-0"></p>
+                                <div class="position-absolute famedate my-0">
+                                    <p th:text="${#temporals.format(post.fameDate, 'HH:mm:ss')}"
+                                       class=" text-right"></p>
+                                </div>
                             </div>
-                            <p th:text="${post.fameType}" class="mb-1 mt-1 font-weight-bold"></p>
-                            <div class="position-absolute famedate">
-                                <p th:text="${#temporals.format(post.fameDate, 'HH:mm:ss')}"
-                                   class="mb-1 text-right mr-2"></p>
+                            <div class="cpost p-1">
+                                <p th:text="${post.description}" class="mb-1"></p>
                             </div>
-                        </div>
-                        <div class="cpost p-1">
-                            <p th:text="${post.description}" class="mb-1"></p>
-                        </div>
-                        <div class="cpost p-1">
-                            <div class="row d-flex">
-                                <form class="ml-3" action="#" th:action="@{/saveFame/{id}(id=${post.fameId})}"
-                                      method="post">
-                                    <input class="like-button" type="submit" value="Like!"/>
-                                </form>
-                                <p class="mr-3 ml-1" th:text="${post.likes}"></p>
-                                <div class="position-absolute commenttrigger">
-                                    <p th:onclick="'commentsFameTrigger(' + ${post.fameId} + ')'"
-                                       class="mt-1 viewcomments">View Comments</p>
+                            <div class="cpost p-1">
+                                <div class="row d-flex">
+                                    <form class="ml-3" action="#" th:action="@{/saveFame/{id}(id=${post.fameId})}"
+                                          method="post">
+                                        <input class="like-button" type="submit" value="Like!"/>
+                                    </form>
+                                    <p class="mr-3 ml-1" th:text="${post.likes}"></p>
+                                    <div class="position-absolute commenttrigger">
+                                        <p th:onclick="'commentsFameTrigger(' + ${post.fameId} + ')'"
+                                           class="mt-1 viewcomments">View Comments</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
                     <!-- Hall Of Fame Comments -->
                     <div class="defaultnone" th:attr="id='fameComment' + ${post.fameId}">
@@ -241,7 +241,7 @@
         <div class="w-100 mt-2 mb-1">
             <div class="widget-box d-flex flex-column justify-content-center align-items-center align-content-center">
                 <div class="fbox cbox px-2 widgetlogo">
-<!--                    <p class="text-center mb-0">Hall Of Fame</p>-->
+                    <!--                    <p class="text-center mb-0">Hall Of Fame</p>-->
                     <img src="/hof.png">
 
                 </div>
@@ -289,13 +289,15 @@
                     <img src="/small.png">
                 </a>
                 <div class="sibox smalltext text-center">
-                    <p class="my-2">Upcoming Meetings and Objectives</p>
-                    <p class="mb-0">Due Soon Objectives</p>
+                    <p class="my-2"><b>Upcoming Meetings and Objectives</b></p>
+                    <br>
+                    <p class="mb-0">Due Soon Objectives:</p>
                     <div th:each="improvement : ${dueSoonObjectives}">
                         <span class="fakelink" th:text="${improvement.objectives}"></span>
                         <p class="mb-0">Due Date: <span th:text="${improvement.dueDate}"></span></p>
                     </div>
-                    <p class="mt-2 mb-0">Next Meeting</p>
+                    <br>
+                    <p class="mt-2 mb-0">Next Meeting:</p>
                     <div th:if="${nextMeeting != null}">
                         <span class="fakelink" th:text="${nextMeeting.meetings}"></span>
                         <p class="mb-0">Meeting Date: <span th:text="${nextMeeting.meetingDate}"></span></p>
@@ -303,7 +305,8 @@
                     <div th:if="${nextMeeting == null}">
                         <p class="mb-0">No upcoming meetings.</p>
                     </div>
-                    <p class="mt-2 mb-0">Most Recent Feedback</p>
+                    <br>
+                    <p class="mt-2 mb-0">Most Recent Feedback:</p>
                     <div th:if="${mostRecentFeedback != null}">
                         <span class="fakelink" th:text="${mostRecentFeedback.feedback}"></span>
                     </div>
