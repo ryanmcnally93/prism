@@ -48,25 +48,26 @@
         <div class="w-100 mt-2 mb-1">
             <div class="widget-box d-flex flex-column justify-content-center align-items-center align-content-center">
                 <a target="_blank" href="https://cloud.workhuman.com/microsites/t/home?client=version1&setCAG=false"
-                   class="cbox px-2">
-                    <p class="text-center mb-0">Callouts</p>
+                   class="cbox px-2 widgetlogo">
+                    <img src="callout.png">
                 </a>
                 <form class="w-75 d-flex flex-column mb-1" action="#" th:action="@{/save}" th:object="${callout}"
                       method="post">
                     <p class="text-center mb-0 mt-2 smalltext text-white">Add a Callout</p>
-					
-					
-					<div class="form-group" id="callout-formgroup">
-		                <select id="employee-select" class="form-control" name="employee">
-		                    <option value="">Select an employee</option>
-		                    <th:block th:each="employ : ${employees}">
-		                        <option th:value="${employ.employeeId}" th:text="${employ.fName} + ' ' + ${employ.lName}"></option>
-		                    </th:block>
-		                </select>
-		            </div>
-					<input type="hidden" id="employeeId" th:field="*{employee}">
-					
-					
+
+
+                    <div class="form-group" id="callout-formgroup">
+                        <select id="employee-select" class="form-control" name="employee">
+                            <option value="">Select an employee</option>
+                            <th:block th:each="employ : ${employees}">
+                                <option th:value="${employ.employeeId}"
+                                        th:text="${employ.fName} + ' ' + ${employ.lName}"></option>
+                            </th:block>
+                        </select>
+                    </div>
+                    <input type="hidden" id="employeeId" th:field="*{employee}">
+
+
                     <input type="text" th:field="*{message}" placeholder="Message"/>
                     <p class="mx-auto mb-1"><input class="col-7" type="submit" value="Add Callout"/><input class="col-5"
                                                                                                            type="reset"
@@ -84,8 +85,8 @@
             <div class="talent-box widget-box d-flex flex-column justify-content-center align-items-center align-content-center">
                 <a target="_blank"
                    href="https://version1.talentguard.com/Pages/HomePageAPI.aspx?menu=Home&ApplyStartTab=true"
-                   class="cbox px-2">
-                    <p class="text-center mb-0">TalentGuard</p>
+                   class="cbox px-2 widgetlogo">
+                    <img src="/talented.png">
                 </a>
                 <form class="w-75 d-flex flex-column mb-1" action="#" th:action="@{/save_cert}" th:object="${cert}"
                       method="post">
@@ -127,7 +128,7 @@
     <div class="col-6 d-flex flex-column">
 
 
-        <div class="row my-2">
+        <div class="row mt-2">
             <div class="col-6 d-flex justify-content-end">
                 <p class="mb-0 pt-1">Filter by team</p>
             </div>
@@ -145,21 +146,27 @@
 
                 <!-- Callout Posts -->
                 <div th:if="${post != null and post.type == 'callout'}" th:class="${post.employee.team}">
-                    <div class="post col-12 px-0 my-2 text-center cpost">
+
+
+                    <div class="post col-12 px-0 mb-0 text-center cpost">
+                        <div class="row d-flex align-content-center" id="postlogo"><img src="/callout.png"></div>
+
                         <div class="position-absolute famename">
-                            <p th:text="${post.employee.fName}" class="mb-1 text-left"></p>
+                            <p th:text="${post.employee.fName + ' ' + post.employee.lName}" class=" mt-3 text-left"></p>
                         </div>
-                        <p  class="mb-1 mt-2 font-weight-bold">Callout</p>
+                        <p th:text="'From: Simon Sapient'" class="font-italic  mb-0"></p>
                         <div class="position-absolute famedate">
                             <p th:text="${#temporals.format(post.calloutDate, 'HH:mm:ss')}"
-                               class="mb-1 text-right mr-2"></p>
+                               class=" mt-3 text-right "></p>
                         </div>
+                        <hr class="mt-1">
                         <div class="cpost p-1">
-                            <p th:text="${post.message}" class="mb-1"></p>
+                            <p th:text="${post.message}" class="mb-1 mt-3"></p>
                         </div>
                         <div class="cpost p-1">
                             <div class="row d-flex">
-                                <form class="ml-3" action="#"  th:action="@{/saveCallout/{id}(id=${post.calloutId})}" method="post">
+                                <form class="ml-3" action="#" th:action="@{/saveCallout/{id}(id=${post.calloutId})}"
+                                      method="post">
                                     <input class="like-button" type="submit" value="Like!"/>
                                 </form>
                                 <p class="mr-3 ml-1" th:text="${post.likes}"></p>
@@ -186,32 +193,34 @@
                 <!-- Hall Of Fame Post -->
                 <div th:if="${post != null and post.type == 'fame'}" th:class="${post.employee.team}">
                     <div class="post col-12 px-0 my-2 text-center">
-                        <div class="row justify-content-center cpost p-1 position-relative">
-                            <div class="position-absolute famename">
-                                <p th:text="${post.employee.fName}" class="mb-1 text-left"></p>
+                        <div class="row d-flex align-content-center mb-0 pl-2" id="postlogo2"><img src="/hof.png"></div>
+                            <div class="row justify-content-center cpost position-relative borderfix">
+                                <div class="position-absolute famename my-0">
+                                    <p th:text="${post.employee.fName + ' ' + post.employee.lName}" class="text-left"></p>
+                                </div>
+                                <p th:text="${post.fameType}" class="font-weight-bold font-italic pt-2 mb-0"></p>
+                                <div class="position-absolute famedate my-0">
+                                    <p th:text="${#temporals.format(post.fameDate, 'HH:mm:ss')}"
+                                       class=" text-right"></p>
+                                </div>
                             </div>
-                            <p th:text="${post.fameType}" class="mb-1 mt-2 font-weight-bold"></p>
-                            <div class="position-absolute famedate">
-                                <p th:text="${#temporals.format(post.fameDate, 'HH:mm:ss')}"
-                                   class="mb-1 text-right mr-2"></p>
+                            <div class="cpost p-1">
+                                <p th:text="${post.description}" class="mb-1"></p>
                             </div>
-                        </div>
-                        <div class="cpost p-1">
-                            <p th:text="${post.description}" class="mb-1"></p>
-                        </div>
-                        <div class="cpost p-1">
-                            <div class="row d-flex">
-                                <form class="ml-3" action="#" th:action="@{/saveFame/{id}(id=${post.fameId})}" method="post">
-                                    <input class="like-button" type="submit" value="Like!"/>
-                                </form>
-                                <p class="mr-3 ml-1" th:text="${post.likes}"></p>
-                                <div class="position-absolute commenttrigger">
-                                    <p th:onclick="'commentsFameTrigger(' + ${post.fameId} + ')'"
-                                       class="mt-1 viewcomments">View Comments</p>
+                            <div class="cpost p-1">
+                                <div class="row d-flex">
+                                    <form class="ml-3" action="#" th:action="@{/saveFame/{id}(id=${post.fameId})}"
+                                          method="post">
+                                        <input class="like-button" type="submit" value="Like!"/>
+                                    </form>
+                                    <p class="mr-3 ml-1" th:text="${post.likes}"></p>
+                                    <div class="position-absolute commenttrigger">
+                                        <p th:onclick="'commentsFameTrigger(' + ${post.fameId} + ')'"
+                                           class="mt-1 viewcomments">View Comments</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
                     <!-- Hall Of Fame Comments -->
                     <div class="defaultnone" th:attr="id='fameComment' + ${post.fameId}">
@@ -232,25 +241,28 @@
         <!-- Hall Of Fame Widget -->
         <div class="w-100 mt-2 mb-1">
             <div class="widget-box d-flex flex-column justify-content-center align-items-center align-content-center">
-                <div class="fbox cbox px-2">
-                    <p class="text-center mb-0">Hall Of Fame</p>
+                <div class="fbox cbox px-2 widgetlogo">
+                    <!--                    <p class="text-center mb-0">Hall Of Fame</p>-->
+                    <img src="/hof.png">
+
                 </div>
                 <form class="w-75 d-flex flex-column mb-1" action="#" th:action="@{/save_fame}" th:object="${fame}"
                       method="post">
                     <p class="text-center text-white mb-0 mt-2 smalltext">Add an Achievement</p>
-					
-					<div class="form-group" id="fame-formgroup">
-		                <select id="fame-employee-select" class="form-control" name="employee">
-		                    <option value="">Select an employee</option>
-		                    <th:block th:each="employ : ${employees}">
-		                        <option th:value="${employ.employeeId}" th:text="${employ.fName} + ' ' + ${employ.lName}"></option>
-		                    </th:block>
-		                </select>
-		            </div>
-					
-					<input type="hidden" id="fameemployeeId" th:field="*{employee}">
-					
-					
+
+                    <div class="form-group" id="fame-formgroup">
+                        <select id="fame-employee-select" class="form-control" name="employee">
+                            <option value="">Select an employee</option>
+                            <th:block th:each="employ : ${employees}">
+                                <option th:value="${employ.employeeId}"
+                                        th:text="${employ.fName} + ' ' + ${employ.lName}"></option>
+                            </th:block>
+                        </select>
+                    </div>
+
+                    <input type="hidden" id="fameemployeeId" th:field="*{employee}">
+
+
                     <input id="listinput" class="mx-auto w-100 mt-1" type="text" th:field="*{fameType}" name="city"
                            list="fametypes" placeholder="Type">
                     <datalist id="fametypes">
@@ -274,17 +286,19 @@
             <div class="smallimp-box widget-box d-flex flex-column justify-content-center align-items-center align-content-center">
                 <a target="_blank"
                    href="https://version1.small-improvements.com/login?-1.IFormSubmitListener-logInPanel-logInForm&continue=/app/home"
-                   class="cbox px-2">
-                    <p class="text-center mb-0">Small Improvements!</p>
+                   class="cbox px-2 widgetlogo">
+                    <img src="/small.png">
                 </a>
                 <div class="sibox smalltext text-center">
-                    <p class="my-2">Upcoming Meetings and Objectives</p>
-                    <p class="mb-0">Due Soon Objectives</p>
+                    <p class="my-2"><b>Upcoming Meetings and Objectives</b></p>
+                    <br>
+                    <p class="mb-0">Due Soon Objectives:</p>
                     <div th:each="improvement : ${dueSoonObjectives}">
                         <span class="fakelink" th:text="${improvement.objectives}"></span>
                         <p class="mb-0">Due Date: <span th:text="${improvement.dueDate}"></span></p>
                     </div>
-                    <p class="mt-2 mb-0">Next Meeting</p>
+                    <br>
+                    <p class="mt-2 mb-0">Next Meeting:</p>
                     <div th:if="${nextMeeting != null}">
                         <span class="fakelink" th:text="${nextMeeting.meetings}"></span>
                         <p class="mb-0">Meeting Date: <span th:text="${nextMeeting.meetingDate}"></span></p>
@@ -292,7 +306,8 @@
                     <div th:if="${nextMeeting == null}">
                         <p class="mb-0">No upcoming meetings.</p>
                     </div>
-                    <p class="mt-2 mb-0">Most Recent Feedback</p>
+                    <br>
+                    <p class="mt-2 mb-0">Most Recent Feedback:</p>
                     <div th:if="${mostRecentFeedback != null}">
                         <span class="fakelink" th:text="${mostRecentFeedback.feedback}"></span>
                     </div>

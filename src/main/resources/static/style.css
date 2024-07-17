@@ -7,7 +7,7 @@ body{
 	height: 250px;
 	background-color: #052831;
 	border-radius: 15px;
-	border: 1px solid #00c6c2;
+	border: 2px solid #00c6c2;
 }
 
 select#employee-select, #fame-employee-select {
@@ -32,7 +32,7 @@ select#employee-select, #fame-employee-select {
 
 .cbox {
 	color: #00c6c2;
-	background-color: rgb(255,255,255,0.2);
+
 	border-radius: 10px;
 	padding: 5px 0;
 }
@@ -87,13 +87,13 @@ select#employee-select, #fame-employee-select {
 
 .like-button {
 	background-color: white;
-	color: green;
+	color: #052831;
 	border: 1px solid darkgreen;
 	border-radius: 5px;
 }
 
 .like-button:hover {
-	background-color: green;
+	background-color:#052831;
 	color: white;
 }
 
@@ -105,13 +105,16 @@ select#employee-select, #fame-employee-select {
 	max-height: 570px;
 	overflow: hidden;
 	padding-right: 8px;
-	border:1px solid #052831;
+
 	padding-left:0.5rem;
 	border-radius:15px;
 }
 .mainfeed:hover {
 	overflow-y: scroll;
 	overflow-x: hidden;
+}
+
+.mainfeed img{
 }
 
 .alltalentbox {
@@ -190,4 +193,38 @@ a.cbox.px-2:hover {
 	background-color: rgb(255,255,255,0.6);
 	border-radius: 50%;
 	margin-right: 10px;
+}
+
+#postlogo img {
+    height: 25px;
+    width: auto;
+}
+#postlogo{
+    background-color:#052831;
+}
+
+#postlogo2 img {
+    height: 25px;
+    width: auto;
+}
+#postlogo2{
+    background-color:#052831;
+}
+
+.widgetlogo img{
+    height:50px;
+    width:auto;
+}
+
+hr{
+    border:1px solid #052831;
+}
+
+.borderfix{
+    border-bottom: 2px solid  #052831;
+    margin-top:0px;
+}
+
+.font-italic {
+    font-style: italic;
 }
