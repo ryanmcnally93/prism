@@ -142,26 +142,26 @@
         </div>
 
         <div class="mainfeed">
-            <div th:each="post:${posts}" class="post col-12 px-0 my-2 text-center">
+            <div th:each="post:${posts}" th:class="${post.employee.team}" >
 
                 <!-- Callout Posts -->
-                <div th:if="${post != null and post.type == 'callout'}" th:class="${post.employee.team}">
+                <div th:if="${post != null and post.type == 'callout'}" class="post col-12 px-0 my-2 text-center">
 
 
                     <div class="post col-12 px-0 mb-0 text-center cpost">
                         <div class="row d-flex align-content-center" id="postlogo"><img src="/callout.png"></div>
 
                         <div class="position-absolute famename">
-                            <p th:text="${post.employee.fName + ' ' + post.employee.lName}" class=" mt-3 text-left"></p>
+                            <p th:text="'From: Simon Sapient'" class=" mt-3 text-left"></p>
                         </div>
-                        <p th:text="'From: Simon Sapient'" class="font-italic  mb-0"></p>
+                        <p th:text="${post.employee.fName + ' ' + post.employee.lName}" class="font-italic font-weight-bold  mb-0"></p>
                         <div class="position-absolute famedate">
                             <p th:text="${#temporals.format(post.calloutDate, 'HH:mm:ss')}"
                                class=" mt-3 text-right "></p>
                         </div>
-                        <hr class="mt-1">
+                        <hr class="mt-1 mb-0">
                         <div class="cpost p-1">
-                            <p th:text="${post.message}" class="mb-1 mt-3"></p>
+                            <p th:text="${post.message}" class="mb-1"></p>
                         </div>
                         <div class="cpost p-1">
                             <div class="row d-flex">
@@ -191,7 +191,7 @@
                 </div>
 
                 <!-- Hall Of Fame Post -->
-                <div th:if="${post != null and post.type == 'fame'}" th:class="${post.employee.team}">
+                <div th:if="${post != null and post.type == 'fame'}">
                     <div class="post col-12 px-0 my-2 text-center">
                         <div class="row d-flex align-content-center mb-0 pl-2" id="postlogo2"><img src="/hof.png"></div>
                             <div class="row justify-content-center cpost position-relative borderfix">
