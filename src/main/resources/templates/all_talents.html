@@ -42,31 +42,34 @@
         <div class="col-10 d-flex flex-column align-items-center">
             <h1>TalentGuard Certificates and Achievements</h1>
 
-            <div class="w-75 alltalentbox d-flex flex-column align-items-center" th:each="talent:${talents}">
+            <div class="w-75 alltalentbox py-3 d-flex flex-column align-items-center" th:each="talent:${talents}">
                 <div class="row">
-                    <p>TalentGuard ID: </p>
-                    <p class="mb-0 mr-1" th:text="${talent.talentguardId}"></p>
+					<div class="col-12 align-items-center d-flex flex-column">
+	                    <p class="flex-row mb-0">Employee Name</p>
+	                    <p class="mb-0 flex-row"> Simon Sapient</p>
+					</div>
                 </div>
                 <div class="row">
-                    <p>Employee Name: </p>
-                    <p class="mb-0 mr-1"> Simon Sapient</p>
+					<div class="col-12 align-items-center d-flex flex-column">
+	                    <p class="d-flex flex-row mb-0 mt-2">Employee Certificates</p>
+	                    <div class="d-flex flex-row" th:each="cert:${talent.certs}">
+	                        <p class="mb-0 mr-1" th:text="${cert.name}"></p>
+							<p class="mb-0 mr-1" th:text="${cert.certDate}"></p>
+	                    </div>
+					</div>
                 </div>
                 <div class="row">
-                    <p>Employee Certificates: </p>
-                    <div class="d-flex flex-row" th:each="cert:${talent.certs}">
-                        <p class="mb-0 mr-1" th:text="${cert.name}"></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <p>Employee Experiences: </p>
-                    <div class="d-flex flex-row" th:each="exp:${talent.exps}">
-                        <p class="mb-0 mr-1" th:text="${exp.experience}"></p>
-                        <p class="mb-0 mr-1">: </p>
-                        <p class="mb-0 mr-1" th:text="${exp.years}"></p>
-                        <p class="mb-0 mr-1">years , </p>
-                        <p class="mb-0 mr-1" th:text="${exp.months}"></p>
-                        <p class="mb-0 mr-1">months.</p>
-                    </div>
+					<div class="col-12 align-items-center d-flex flex-column">
+	                    <p class="mt-2 d-flex flex-row mb-0">Employee Experiences</p>
+	                    <div class="d-flex flex-row" th:each="exp:${talent.exps}">
+	                        <p class="mb-0 mr-1" th:text="${exp.experience}"></p>
+	                        <p class="mb-0 mr-1">: </p>
+	                        <p class="mb-0 mr-1" th:text="${exp.years}"></p>
+	                        <p class="mb-0 mr-1">years , </p>
+	                        <p class="mb-0 mr-1" th:text="${exp.months}"></p>
+	                        <p class="mb-0 mr-1">months.</p>
+	                    </div>
+					</div>
                 </div>
             </div>
         </div>
